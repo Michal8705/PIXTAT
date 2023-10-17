@@ -1,0 +1,20 @@
+Wilfredo Leon;volleyball;2023-04-01
+Kamil Semeniuk;volleyball;2023-04-01
+Simone Giannelli;volleyball;2023-04-01
+Nimir Abdel-Aziz;volleyball;2023-04-01
+Miguel Ángel López;volleyball;2023-04-01
+Alessandro Michieletto;volleyball;2023-04-01
+Maique Nascimento;volleyball;2023-04-01
+Robertlandy Simon Aties;volleyball;2023-04-01
+Mateusz Bieniek;volleyball;2023-04-01
+Fabio Balaso;volleyball;2023-04-01
+?sniel Melgarejo;volleyball;2023-04-01
+Earvin Ngapeth;volleyball;2023-04-01
+Arslan Ekşi;volleyball;2023-04-01
+Oleh Plotnytskyi;volleyball;2023-04-01
+Jesús Herrera Jaime;volleyball;2023-04-01
+Santiago Danani;volleyball;2023-04-01
+Marcin Janusz;volleyball;2023-04-01
+Matheus Bispo;volleyball;2023-04-01
+Marko Podraščanin;volleyball;2023-04-01
+Pavel Pankov;volleyball;2023-04-01

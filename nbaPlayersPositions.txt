@@ -1,0 +1,20 @@
+Giannis Antetokounmpo;NBA;2023-04-01
+Nikola Jokic;NBA;2023-04-01
+Luka Doncic;NBA;2023-04-01
+Kevin Durant;NBA;2023-04-01
+Steph Curry;NBA;2023-04-01
+Joel Embiid;NBA;2023-04-01
+LeBron James;NBA;2023-04-01
+Jayson Tatum;NBA;2023-04-01
+Jimmy Butler;NBA;2023-04-01
+Kawhi Leonard;NBA;2023-04-01
+Ja Morant;NBA;2023-04-01
+Paul George;NBA;2023-04-01
+Devin Booker;NBA;2023-04-01
+Trae Young;NBA;2023-04-01
+Damian Lillard;NBA;2023-04-01
+Anthony Davis;NBA;2023-04-01
+Bam Adebayo;NBA;2023-04-01
+DeMar DeRozan ;NBA;2023-04-01
+Chris Paul;NBA;2023-04-01
+Karl Anthony-Towns ;NBA;2023-04-01

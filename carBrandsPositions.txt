@@ -1,0 +1,51 @@
+Toyota;motorisation;2023-05-07
+Mercedes-Benz;motorisation;2023-05-07
+Tesla;motorisation;2023-05-07
+Volkswagen;motorisation;2023-05-07
+BMW;motorisation;2023-05-07
+Porsche;motorisation;2023-05-07
+Honda;motorisation;2023-05-07
+Ford;motorisation;2023-05-07
+Nissan;motorisation;2023-05-07
+Volvo;motorisation;2023-05-07
+Audi;motorisation;2023-05-07
+Hyundai;motorisation;2023-05-07
+Chevrolet;motorisation;2023-05-07
+Lexus;motorisation;2023-05-07
+Land Rover;motorisation;2023-05-07
+Renault;motorisation;2023-05-07
+Ferrari;motorisation;2023-05-07
+Subaru;motorisation;2023-05-07
+BYD;motorisation;2023-05-07
+Haval;motorisation;2023-05-07
+Cadillac;motorisation;2023-05-07
+Kia;motorisation;2023-05-07
+Jeep;motorisation;2023-05-07
+BUICK;motorisation;2023-05-07
+Geely;motorisation;2023-05-07
+Peugeot;motorisation;2023-05-07
+Suzuki;motorisation;2023-05-07
+GMC;motorisation;2023-05-07
+MINI;motorisation;2023-05-07
+Polaris;motorisation;2023-05-07
+RAM Trucks;motorisation;2023-05-07
+Skoda;motorisation;2023-05-07
+Isuzu;motorisation;2023-05-07
+Scania;motorisation;2023-05-07
+Mazda;motorisation;2023-05-07
+Peugeot;motorisation;2023-05-07
+LI AUTO;motorisation;2023-05-07
+Lincoln;motorisation;2023-05-07
+Jaguar;motorisation;2023-05-07
+NIO;motorisation;2023-05-07
+Great Wall Motor;motorisation;2023-05-07
+Hino;motorisation;2023-05-07
+Bentley;motorisation;2023-05-07
+Bajaj Auto;motorisation;2023-05-07
+Mahindra;motorisation;2023-05-07
+Maruti Suzuki;motorisation;2023-05-07
+Xpeng;motorisation;2023-05-07
+MAN;motorisation;2023-05-07
+Hero;motorisation;2023-05-07
+Daihatsu;motorisation;2023-05-07
+Fiat;motorisation;2023-05-07

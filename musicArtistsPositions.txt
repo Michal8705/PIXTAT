@@ -1,0 +1,48 @@
+Drake;music;2023-05-07
+Doja Cat;music;2023-05-07
+Harry Styles;music;2023-05-07
+Bad Bunny;music;2023-05-07
+Justin Bieber;music;2023-05-07
+Ed Sheeran;music;2023-05-07
+21 Savage;music;2023-05-07
+Taylor Swift;music;2023-05-07
+Jack Harlow;music;2023-05-07
+Morgan Wallen;music;2023-05-07
+Glass Animals;music;2023-05-07
+the Kid LAROI;music;2023-05-07
+Dua Lipa;music;2023-05-07
+Lil Nas X;music;2023-05-07
+Post Malone;music;2023-05-07
+Lil Baby;music;2023-05-07
+the Weeknd;music;2023-05-07
+Adele;music;2023-05-07
+Tems;music;2023-05-07
+Elton John;music;2023-05-07
+Kodak Black;music;2023-05-07
+Lizzo;music;2023-05-07
+Latto;music;2023-05-07
+Kendrick Lamar;music;2023-05-07
+Beyonce;music;2023-05-07
+Chencho Corleone;music;2023-05-07
+Stephanie Beatriz;music;2023-05-07
+GAYLE;music;2023-05-07
+Nicki Minaj;music;2023-05-07
+Gunna;music;2023-05-07
+Encanto Cast;music;2023-05-07
+Steve Lacy;music;2023-05-07
+Kate Bush;music;2023-05-07
+Diane Guerrero;music;2023-05-07
+Luke Combs;music;2023-05-07
+Nicky Youre;music;2023-05-07
+Imagine Dragons;music;2023-05-07
+Young Thug;music;2023-05-07
+SZA;music;2023-05-07
+OneRepublic;music;2023-05-07
+Lil Durk;music;2023-05-07
+Ariana Grande;music;2023-05-07
+Joji;music;2023-05-07
+Karol G;music;2023-05-07
+Cole Swindell;music;2023-05-07
+Sam Smith;music;2023-05-07
+Olivia Rodrigo;music;2023-05-07
+Jessica Darrow;music;2023-05-07

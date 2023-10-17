@@ -1,0 +1,17 @@
+Olympics;sport;2023-04-01
+FIFA World Cup;sport;2023-04-01
+Super Bowl;sport;2023-04-01
+Stanley Cup Finals;sport;2023-04-01
+Wimbledon;sport;2023-04-01
+NBA Finals;sport;2023-04-01
+Masters Tournament;sport;2023-04-01
+Grand National;sport;2023-04-01
+Tour de France;sport;2023-04-01
+Cricket World Cup;sport;2023-04-01
+UEFA Champions League Final;sport;2023-04-01
+World Masters Athletics;sport;2023-04-01
+Gold medal;;2023-04-01
+Silver medal;;2023-04-01
+Bronze medal;;2023-04-01
+Goal;football;2023-04-01
+Impossible Sport Moment;;2023-04-01

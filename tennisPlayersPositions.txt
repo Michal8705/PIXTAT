@@ -1,0 +1,20 @@
+Novak Djokovic;tennis;2023-04-01
+Carlos Alcaraz;tennis;2023-04-01
+Stefanos Tsitsipas;tennis;2023-04-01
+Casper Ruud;tennis;2023-04-01
+Taylor Fritz;tennis;2023-04-01
+Andrey Rublev;tennis;2023-04-01
+Daniil Medvedev;tennis;2023-04-01
+Rafael Nadal;tennis;2023-04-01
+Felix Auger-Aliassime;tennis;2023-04-01
+Holger Rune;tennis;2023-04-01
+Hubert Hurkacz;tennis;2023-04-01
+Cameron Norrie;tennis;2023-04-01
+Jannik Sinner;tennis;2023-04-01
+Karen Khachanov;tennis;2023-04-01
+Frances Tiafoe;tennis;2023-04-01
+Alexander Zverev;tennis;2023-04-01
+Pablo Carreno Busta;tennis;2023-04-01
+Lorenzo Musetti;tennis;2023-04-01
+Nick Kyrgios;tennis;2023-04-01
+Borna Coric;tennis;2023-04-01

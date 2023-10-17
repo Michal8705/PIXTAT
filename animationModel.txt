@@ -1,0 +1,12 @@
+Single line chart
+Single bar chart
+Single tile chart
+Double line chart
+Double bar chart
+Double tile chart
+TOP10 line chart
+TOP10 bar chart
+TOP10 tile chart
+TOP20 tile chart
+TOP30 tile chart
+Map

@@ -1,0 +1,33 @@
+The Mandalorian;series;2023-04-01
+Daisy Jones and the Six;series;2023-04-01
+Shadow and Bone;series;2023-04-01
+Yellowjackets;series;2023-04-01
+Succession;series;2023-04-01
+The Power;series;2023-04-01
+White House Plumbers;series;2023-04-01
+Tiny Beautiful Things;series;2023-04-01
+Mrs. Davis;series;2023-04-01
+Dead Ringers;series;2023-04-01
+Love and Death;series;2023-04-01
+Fatal Attraction;series;2023-04-01
+Justified: City Primeval;series;2023-04-01
+Agatha: Coven of Chaos;series;2023-04-01
+Ahsoka;series;2023-04-01
+Echo;series;2023-04-01
+Ironheart;series;2023-04-01
+Loki;series;2023-04-01
+Secret Invasio;series;2023-04-01
+Star Wars: Skeleton Crew;series;2023-04-01
+Black Mirror;series;2023-04-01
+What We Do in the Shadows;series;2023-04-01
+Dune: The Sisterhood;series;2023-04-01
+Gen V;series;2023-04-01
+Anne Rice’s Mayfair Witches;series;2023-04-01
+Vikings: Valhalla;series;2023-04-01
+The Last of Us;series;2023-04-01
+That ‘90s Show;series;2023-04-01
+Poker Face;series;2023-04-01
+Wolf Pack;series;2023-04-01
+Shrinking;series;2023-04-01
+Star Trek: Picard;series;2023-04-01
+Ghosted;series;2023-04-01

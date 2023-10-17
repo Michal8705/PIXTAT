@@ -1,0 +1,56 @@
+Creed III;movie;2023-04-01
+Scream VI;movie;2023-04-01
+65;movie;2023-04-01
+Shazam! Fury of the Gods;movie;2023-04-01
+John Wick: Chapter 4;movie;2023-04-01
+A Good Person;movie;2023-04-01
+Dungeons & Dragons: Honor Among Thieves;movie;2023-04-01
+Heart of a Lion;movie;2023-04-01
+The Super Mario Bros.;movie;2023-04-01
+Renfield;movie;2023-04-01
+Evil Dead Rise;movie;2023-04-01
+Are You There God? It's Me;movie;2023-04-01
+Guardians of the Galaxy Vol. 3;movie;2023-04-01
+Fast X;movie;2023-04-01
+The Little Mermaid;movie;2023-04-01
+Spider-Man: Across the Spider-Verse;movie;2023-04-01
+Transformers: Rise of the Beasts;movie;2023-04-01
+Strays;movie;2023-04-01
+Asteroid City;movie;2023-04-01
+Elemental;movie;2023-04-01
+The Flash;movie;2023-04-01
+Indiana Jones and the Dial of Destiny;movie;2023-04-01
+Insidious: Fear the Dark;movie;2023-04-01
+Mission: Impossible - Dead Reckoning Part One;movie;2023-04-01
+Oppenheimer;movie;2023-04-01
+Barbie;movie;2023-04-01
+The Marvels;movie;2023-04-01
+The Haunted Mansion;movie;2023-04-01
+Gran Turismo;movie;2023-04-01
+Challengers;movie;2023-04-01
+NO HARD FEELINGS;movie;2023-04-01
+Blue Beetle;movie;2023-04-01
+Untitled Please Don't Destroy Comedy;movie;2023-04-01
+The Nun 2;movie;2023-04-01
+Next Goal Wins;movie;2023-04-01
+Kraven the Hunter;movie;2023-04-01
+True Love;movie;2023-04-01
+The Exorcist;movie;2023-04-01
+Saw X;movie;2023-04-01
+Dune: Part Two;movie;2023-04-01
+The Hunger Games: The Ballad of Songbirds and Snakes;movie;2023-04-01
+Wish;movie;2023-04-01
+Wonka;movie;2023-04-01
+The Color Purple;movie;2023-04-01
+Aquaman and the Lost Kingdom;movie;2023-04-01
+The Actor;movie;2023-04-01
+Air Jordan;movie;2023-04-01
+And;movie;2023-04-01
+Argylle;movie;2023-04-01
+Beau Is Afraid;movie;2023-04-01
+The Bikeriders;movie;2023-04-01
+Blitz;movie;2023-04-01
+Untitled Charlie Day Directorial Debut;movie;2023-04-01
+Chicken Run: Dawn of the Nugget;movie;2023-04-01
+Civil War;movie;2023-04-01
+Dumb Money;movie;2023-04-01

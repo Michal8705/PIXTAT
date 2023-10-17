@@ -1,0 +1,38 @@
+Cosmos;;2023-04-01
+Sun;;2023-04-01
+Moon;;2023-04-01
+Mercury;planet;2023-04-01
+Venus;planet;2023-04-01
+Earth;planet;2023-04-01
+Mars;planet;2023-04-01
+Jupiter;planet;2023-04-01
+Saturn;planet;2023-04-01
+Uranium;planet;2023-04-01
+Neptune;planet;2023-04-01
+Pluto;planet;2023-04-01
+Milky Way;;2023-04-01
+Sagittarius;;2023-04-01
+Black hole;;2023-04-01
+NASA;space;2023-04-01
+ESA;space;2023-04-01
+CNES;space;2023-04-01
+JAXA;space;2023-04-01
+RKA;space;2023-04-01
+DLR;space;2023-04-01
+ASI;space;2023-04-01
+CMSA;space;2023-04-01
+ISRO;space;2023-04-01
+Hubble space telescope;;2023-04-01
+Webb space telescope;;2023-04-01
+Space satellite;;2023-04-01
+Pulsar star;;2023-04-01
+Neutron star;;2023-04-01
+Red dwarf star;;2023-04-01
+White dwarf star;;2023-04-01
+Supernova;space;2023-04-01
+Galaxy;space;2023-04-01
+Meteor strike;;2023-04-01
+Asteroid impact;;2023-04-01
+Solar storm;;2023-04-01
+Starship;;2023-04-01
+Virgin Galactic;;2023-04-01

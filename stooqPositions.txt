@@ -1,0 +1,83 @@
+Gold;price;2023-04-01
+Silver;price;2023-04-01
+Natural Gas;price;2023-04-01
+Oil;price;2023-04-01
+Cooper;price;2023-04-01
+Lithium;price;2023-04-01
+Palladium;price;2023-04-01
+Platinum;price;2023-04-01
+Bitcoin;price;2023-04-01
+Ethereum;price;2023-04-01
+NFT;price;2023-04-01
+Apple;company;2023-04-01
+Microsoft;company;2023-04-01
+Saudi Aramco;company;2023-04-01
+Alphabet;company;2023-04-01
+Amazon;company;2023-04-01
+Berkshire Hathaway;company;2023-04-01
+Tesla;company;2023-04-01
+NVIDIA;company;2023-04-01
+Meta Platforms;company;2023-04-01
+Visa;company;2023-04-01
+TSMC;company;2023-04-01
+Exxon Mobil;company;2023-04-01
+Tencent;company;2023-04-01
+UnitedHealth;company;2023-04-01
+LVMH;company;2023-04-01
+JPMorgan Chase;company;2023-04-01
+Johnson & Johnson;company;2023-04-01
+Walmart;company;2023-04-01
+Mastercard;company;2023-04-01
+Kweichow Moutai;company;2023-04-01
+Procter & Gamble;company;2023-04-01
+Novo Nordisk;company;2023-04-01
+Chevron;company;2023-04-01
+Samsung;company;2023-04-01
+Nestlé;company;2023-04-01
+Home Depot;company;2023-04-01
+Eli Lilly;company;2023-04-01
+AbbVie;company;2023-04-01
+Bank of America;company;2023-04-01
+Merck;company;2023-04-01
+Broadcom;company;2023-04-01
+Coca-Cola;company;2023-04-01
+ASML;company;2023-04-01
+Oracle;company;2023-04-01
+International Holding;company;2023-04-01
+Pepsico;company;2023-04-01
+Roche;company;2023-04-01
+Alibaba;company;2023-04-01
+Pfizer;company;2023-04-01
+L'Oréal;company;2023-04-01
+ICBC;company;2023-04-01
+Shell;company;2023-04-01
+Thermo Fisher Scientific;company;2023-04-01
+Costco;company;2023-04-01
+AstraZeneca;company;2023-04-01
+Cisco;company;2023-04-01
+McDonald;company;2023-04-01
+Reliance Industries;company;2023-04-01
+Hermes;company;2023-04-01
+Toyota;company;2023-04-01
+Nike;company;2023-04-01
+Blackrock;company;2023-04-01
+Vanguard;company;2023-04-01
+EUR USD;;2023-04-01
+UDS JPY;;2023-04-01
+GBP USD;;2023-04-01
+USD CHF;;2023-04-01
+AUD USD;;2023-04-01
+USD CAD;;2023-04-01
+NZD USD;;2023-04-01
+USD CNY;;2023-04-01
+NYSE;stock;2023-04-01
+NASDAQ;stock;2023-04-01
+SEE;stock;2023-04-01
+EURONEXT;stock;2023-04-01
+HKEX;stock;2023-04-01
+TSE;stock;2023-04-01
+SZSE;stock;2023-04-01
+LSE;stock;2023-04-01
+TSX;stock;2023-04-01
+NSE;stock;2023-04-01
+BSE;stock;2023-04-01
