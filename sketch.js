@@ -19,6 +19,7 @@ var pressedLong = 0;
 var mouseMoveSpeed = 0;
 var mouseMoveVectors = [];
 var mouseMoveVectors2 = [];
+var moveVector = 0;
 var moveCount = 0;
 var moveCount2 = 0;
 var firstRun = 10;
@@ -66,6 +67,12 @@ function mouseReleased() {
  moveCount = 0;
  panelScrollerGoOn = 0;
  panelStillScrolling = 0;
+
+ if (mousePressY > mouseY){
+  moveVector = -1; 
+ }else{
+  moveVector = 1; 
+ }
   
  for (var s = 0; s < mouseMoveVectors.length; s++) {
   moveCount = moveCount+mouseMoveVectors[s];
@@ -817,7 +824,7 @@ function draw() {
   stroke(255,0,0,255)
   text(test1,100,100)  
   text(moverX,100,130)  
-  text(panelScrollStart,100,150)  
+  text(chartStage,100,150)  
   
  
  if ((chartPlayController != -1 && 
@@ -828,7 +835,7 @@ function draw() {
      panelStillScrolling == 0)
      || (chartModelTypeForLegend == 2 && lastPosChange < 40)
     ){
-//  noLoop();
+  noLoop();
  }  
   
   
@@ -1005,8 +1012,9 @@ class Panel {
      panelStillScrolling = 1;
     }
    }
-    
+   
    if (moveCount != 0 && panelStillScrolling == 1){
+test1 = max(0,min(0,moverY+(moveCount*0)))
     moverY = max(panelYRest,min(0,moverY+(moveCount*moveVector))); 
     mousePressX2 = 0;
     mousePressY2 = 0;       
@@ -1742,7 +1750,8 @@ class Buttons {
    if (actualButton == 4){
     tableTMP = tableTimeRange;
    }
-
+    
+  
    actualButtonYLength = buttonH*2+tableTMP.length*buttonH+extraButtonH;
     
    for (var a = 0; a < tableTMP.length; a++) { 
@@ -2851,7 +2860,6 @@ class StartChart {
      
     doBackground = 1; 
     chartPanel.clear();
- test1 = test1+1
    }
   }else{
    doBackground = 1; 
