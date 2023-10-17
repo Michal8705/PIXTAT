@@ -828,7 +828,7 @@ function draw() {
      panelStillScrolling == 0)
      || (chartModelTypeForLegend == 2 && lastPosChange < 40)
     ){
-  noLoop();
+//  noLoop();
  }  
   
   
