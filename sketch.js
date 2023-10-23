@@ -4395,8 +4395,11 @@ class StartChart {
      
    var maxInLine = 2
    var allValueTmp = 0
+   var maxInHeight = round((wH-this.nextBar2*3-tableYEnd)/60)*2
+   
+   test1 = maxInHeight
      
-   for (var a = 0; a < this.bars; a++) {
+   for (var a = 0; a < min(this.bars,maxInHeight); a++) {
  
     var xTmp = (a % maxInLine)*100
     var nextLine = floor(a/maxInLine)*(60)
