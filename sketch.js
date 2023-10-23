@@ -101,7 +101,8 @@ function moveParameters() {
  // SPRAWDZENIE DLUGOSCI PRZESUNIECIA  
    
   if(mouseMoveVectors2.length == 0){ 
-   mouseMoveVectors2.push(abs(mouseY-mouseY)); 
+//   mouseMoveVectors2.push(abs(mouseY-mouseY)); 
+   mouseMoveVectors2.push(abs(11)); 
   }else{
    mouseMoveVectors2.push(abs(mouseY2-mouseY));     
   }
@@ -135,10 +136,14 @@ function moveParameters() {
 
 
 function choiceController() {
+ lastChoiceSter++;
   
  if (choiceSter1 == 1){
   choiceTimer1 = choiceTimer1-choiceTimer2;
+  mouseMoveSpeed = 0;
+  lastChoiceSter = 0;
  }
+
  choiceSter1 = 0;
 }
 
@@ -160,17 +165,6 @@ function mouseClicked(){
  loop();  
 }  
 
-
-function choiceController() {
- lastChoiceSter++;
-  
- if (choiceSter1 == 1){
-  mouseMoveSpeed = 0;
-  lastChoiceSter = 0;
- }
-  
- choiceSter1 = 0;
-}
 
 
 
@@ -227,7 +221,7 @@ function panelController() {
  rightButtonsPanelStart = 0;
  chartPanelStart = 0; 
   
- if (lastChoiceSter < 20 ||
+ if (lastChoiceSter < 30 ||
      choiceSter1 == 1 ||
      pos1 != pos2 ||
      lastPosChange > 0 ||
@@ -819,21 +813,28 @@ function draw() {
  lastActualButton = actualButton;
  playButtonStart = 0; 
  lastNowChangeForMap = max(lastNowChangeForMap-1,0); 
-
+  
+ 
   textSize(30);
   stroke(255,0,0,255)
   text(test1,100,100)  
-  text(moverX,100,130)  
-  text(chartStage,100,150)  
+  text(mouseX,100,130)  
+  text(panelSter,100,150)  
   
  
  if ((chartPlayController != -1 && 
      firstRun == 0 && 
      !mouseIsPressed && 
-     lastChoiceSter > 13 &&  
+     lastChoiceSter > 13 && 
+     choiceTimer1 == 0 &&
      lastPosChange == 0 &&
      panelStillScrolling == 0)
-     || (chartModelTypeForLegend == 2 && lastPosChange < 40)
+     || (chartModelTypeForLegend == 2 && 
+         lastPosChange < 40 && 
+         firstRun == 0 &&
+         choiceTimer1 == 0 &&
+         moveCount == 0
+        )
     ){
   noLoop();
  }  
@@ -936,7 +937,7 @@ class Panel {
   
  controlScrollPanel() {
 
-   
+  
   if (wH-actualButtonYLength < 0) {
     
    var panelYRest = wH-actualButtonYLength; 
@@ -1014,7 +1015,6 @@ class Panel {
    }
    
    if (moveCount != 0 && panelStillScrolling == 1){
-test1 = max(0,min(0,moverY+(moveCount*0)))
     moverY = max(panelYRest,min(0,moverY+(moveCount*moveVector))); 
     mousePressX2 = 0;
     mousePressY2 = 0;       
@@ -1106,10 +1106,23 @@ class LeftPanel {
     
    for (var a = 0; a < numberOfSlots; a++) { 
     
-    if ((mouseX > wW-this.x-this.long*2.7+this.long*0.5+moverX && 
-         mouseX < wW-this.x-this.long*2.7+this.long*0.5+this.long*1.0+moverX &&
-         mouseY > this.long*2.25+this.long*1.5*a &&
-         mouseY < this.long*2.25+this.long*1.5*a+this.long*1.0) && 
+//     if ((mouseX > wW-this.x-this.long*2.7+this.long*0.5+moverX && 
+//          mouseX < wW-this.x-this.long*2.7+this.long*0.5+this.long*1.0+moverX &&
+//          mouseY > this.long*2.25+this.long*1.5*a &&
+//          mouseY < this.long*2.25+this.long*1.5*a+this.long*1.0) && 
+//         choiceSter1 == 1 && 
+//         choiceTimer1 > 1 && 
+//         choiceTimer1 < 10){
+      
+//       actualButton = a;
+//       if (actualButton != lastActualButton){
+//        moverY = 0   
+//           }
+//     }
+    if ((mouseX > wW-this.x-this.long*2.7+this.long*0.4+moverX && 
+         mouseX < wW-this.x-this.long*2.7+this.long*0.5+this.long*1.2+moverX &&
+         mouseY > this.long*2+this.long*1.5*a &&
+         mouseY < this.long*2+this.long*1.5*a+this.long*1.5) && 
         choiceSter1 == 1){
       
       actualButton = a;
@@ -1708,13 +1721,21 @@ class Buttons {
         2);
    
 
-    
+   var sizeCorrector = 1
+   if ((this.x-20) < rightButtonsPanel.textWidth(buttonsNames[actualButton]))
 
    rightButtonsPanel.textStyle(BOLD);
    rightButtonsPanel.textFont('Georgia');
    rightButtonsPanel.fill(255, 255, 255, 255);
    rightButtonsPanel.strokeWeight(0);
    rightButtonsPanel.textSize(30);    
+   var sizeCorrector = 1
+   if ((this.x-20) < rightButtonsPanel.textWidth(buttonsNames[actualButton])){
+    sizeCorrector = (this.x-20)/rightButtonsPanel.textWidth(buttonsNames[actualButton])
+   }
+   rightButtonsPanel.textSize(30*sizeCorrector);    
+     
+     
    rightButtonsPanel.text(buttonsNames[actualButton],
         this.x/2-rightButtonsPanel.textWidth(buttonsNames[actualButton])/2,
         buttonH*1.5-rightButtonsPanel.textSize()); 
@@ -1768,7 +1789,10 @@ class Buttons {
  
     }
      
-    if (choiceSter1 == 1 && 
+    if (choiceSter1 == 1 &&
+        choiceTimer1 > 1 && 
+        choiceTimer1 < 10 && 
+        moveCount == 0 &&
         panelMoveX == 0 &&
         extraStrokePosition == 1 &&
         actualButtonParameters[actualButton] != a
@@ -1866,7 +1890,7 @@ class Buttons {
      
     rightButtonsPanel.strokeWeight(this.stroke);
     rightButtonsPanel.fill(255, 0, 0, 255);
-    if (extraStrokePosition){
+    if (extraStrokePosition*!mobileDevice){
      rightButtonsPanel.fill(70,255,255,255);
     }
     if ((actualButtonParameters[actualButton] == a && actualButton != 3) ||
@@ -1895,7 +1919,7 @@ class Buttons {
     rightButtonsPanel.textFont('Georgia');
     rightButtonsPanel.stroke(0, 0, 0, 255);
     rightButtonsPanel.fill(255,255,255,255);
-    if (extraStrokePosition){
+    if (extraStrokePosition*!mobileDevice){
      rightButtonsPanel.fill(70,255,255,255);
     }
     if ((actualButtonParameters[actualButton] == a && actualButton != 3) ||
@@ -1911,7 +1935,7 @@ class Buttons {
         ){
      rightButtonsPanel.fill(0,255,0,255);
     }
-    rightButtonsPanel.strokeWeight(1+extraStrokePosition*2);
+    rightButtonsPanel.strokeWeight(1+extraStrokePosition*2*!mobileDevice);
     rightButtonsPanel.textSize(20);
     var textToButton = tableTMP[a];  
      
@@ -2105,7 +2129,9 @@ class PlayButton {
 
 
    if (choiceSter1 == 1){
-    if (lastChoiceSter > 2
+    if (lastChoiceSter > 2 && 
+        choiceTimer1 > 1 && 
+        choiceTimer1 < 10
      && mousePressX >= playButtonXStart
      && mousePressX <= playButtonXStart+this.nextBar2
      && mousePressY >= wH-this.nextBar2*1.35
@@ -2196,7 +2222,9 @@ class PlayButton {
 
 
    if (choiceSter1 == 1){
-    if (lastChoiceSter > 2
+    if (lastChoiceSter > 2 && 
+        choiceTimer1 > 1 && 
+        choiceTimer1 < 10
      && mousePressX >= playButtonXStart
      && mousePressX <= bCCControllerLength
      && mousePressY >= wH-this.nextBar2*1.5
@@ -2329,7 +2357,9 @@ class TimerBelt {
     if (mousePressX >= bCCControllerLength-10
      && mousePressX <= bCCControllerLength+bCCMaxSize+10
      && mousePressY >= wH-this.nextBar2*0.8-this.nextBar2*0.40
-     && mousePressY <= wH){
+     && mousePressY <= wH && 
+        choiceTimer1 > 1 && 
+        choiceTimer1 < 10){
      
      firstRun = 2 
      chartLineRefresh = 1;
@@ -3759,7 +3789,7 @@ class StartChart {
         
          var bCCMultiplierValue = bCCMultiplier*b;
         chartPanel.strokeWeight(0);
-    chartPanel.textStyle(BOLD);
+        chartPanel.textStyle(BOLD);
          chartPanel.textAlign(RIGHT);
          chartPanel.text(round(bCCMultiplierValue/scaleLegendValue).toLocaleString("en-US")+scaleLegend,
                  lCCWidth-lCCWidth/this.stages,
@@ -3815,24 +3845,81 @@ class StartChart {
     var nextLine = floor(a/maxInLine)*(300+this.nextBar2)
     var yTmp = this.nextBar2*1.5+nextLine
     
-//    chartMoverY = min(0,wH-330-yTmp)
-    if (a+1 == this.bars){     
-     if (pos1>pos2 &&
-      mouseX < wW-panelWidth+panelMoveX-circlePanelWidth*0.3){    
-      chartMoverY = max(min(0,wH-300-2*this.nextBar2-yTmp),chartMoverY-wH/(this.nextBar2*0.5));
-     }
-     
-     if (pos1<pos2 &&
-      mouseX < wW-panelWidth+panelMoveX-circlePanelWidth*0.3){     
-      chartMoverY = min(0,chartMoverY+wH/(this.nextBar2*0.5));
+
+//---------------------------SCROLLOWANIE-------------------------//    
+    
+    if (a+1 == this.bars){
+      
+     if (mouseX < wW-this.x+moverX-this.nextBar2){
+      if (touches.length == 0){
+       if (pos1>pos2){
+        chartMoverY = max(min(0,wH-300-2*this.nextBar2-yTmp),chartMoverY-wH/(this.nextBar2*0.5));
+       }
+       if (pos1<pos2){
+        chartMoverY = min(0,chartMoverY+wH/(this.nextBar2*0.5));
+       }
+      }
+      
+      // if (touches.length == 1){
+      //  if (mousePressY > mouseY){
+      //   chartMoverY = max(min(0,wH-300-2*this.nextBar2-yTmp),chartMoverY-wH/(this.nextBar2*0.5));
+      //  }
+      //  if (mousePressY < mouseY){
+      //   chartMoverY = min(0,chartMoverY+wH/(this.nextBar2*0.5));
+      //  }
+      // }
      }
       
-     if (chartMoverY < wH-300-2*this.nextBar2-yTmp){
-      chartMoverY = min(0,wH-300-2*this.nextBar2-yTmp) 
-     }
+    //  PRZESUNIECIE
+      
+      
+     if ((mouseIsPressed && 
+        pressedLong > 5 && 
+        mousePressX < wW-this.x+moverX-this.nextBar2) ||
+       (panelScrollerGoOn == 1)){
 
+      mousePressX2 = mousePressX;
+      mousePressY2 = mousePressY;       
+     
+      if (touches.length == 0){  
+       chartMoverY = max(min(0,wH-300-2*this.nextBar2-yTmp),chartMoverY-(mouseY2-mouseY));
+       panelScrollerGoOn = 1;
+      }
+
+      if (touches.length == 1 && moveCount2 > 1){  
+       chartMoverY = max(min(0,wH-300-2*this.nextBar2-yTmp),chartMoverY-(mouseY2-mouseY));
+       panelScrollerGoOn = 1;
+      }
+     }      
+      
+//     PRZESUNIĘCIE PO PUSZCZENIU    
+
+     if (choiceSter1 == 1){
+      if (mobileDevice != 0 && 
+        mousePressX < wW-this.x+moverX-this.nextBar2){
+    
+       panelStillScrolling = 1;
+      }
+     }
+   
+     if (moveCount != 0 && panelStillScrolling == 1){
+      chartMoverY = max(min(0,wH-300-2*this.nextBar2-yTmp),chartMoverY+(moveCount*moveVector));
+      mousePressX2 = 0;
+      mousePressY2 = 0;       
+     }    
+      
+      
+    
+     if (chartMoverY < wH-300-2*this.nextBar2-yTmp){
+      chartMoverY = wH-300-2*this.nextBar2-yTmp
+     }
+     if (chartMoverY > 0){
+      chartMoverY = 0
+     }
     }
 
+
+     
     chartPanel.strokeWeight(1);
     chartPanel.stroke(110, 0, 210, 250); 
     chartPanel.fill(0, 122, 255, 40);        
@@ -4180,7 +4267,7 @@ class StartChart {
     
    if (chartWitchStage == 0){
       
-    for (var z = 0; z < min(3,this.bars); z++) {
+    for (var z = 0; z < this.bars; z++) {
              
      var name1 = chartName2[chartStage*this.bars+z];
      var date1 = chartDate2[chartStage*this.bars+z];
@@ -4195,7 +4282,7 @@ class StartChart {
       if (name1 == chartName2[(chartStage+this.divider+1)*this.bars+d]){
          
        value2 = chartValue2[(chartStage+this.divider+1)*this.bars+d];
-       position2 = min(3,d);
+       position2 = d;
        d = this.bars;
        testT = 1;
 
@@ -4299,13 +4386,120 @@ class StartChart {
      
       
    }
+
+     
+     
+     
+//-------------------- tile na wykresie line----------------------//
+     
+     
+   var maxInLine = 2
+   var allValueTmp = 0
+     
+   for (var a = 0; a < this.bars; a++) {
+ 
+    var xTmp = (a % maxInLine)*100
+    var nextLine = floor(a/maxInLine)*(60)
+    var yTmp = tableYEnd+this.nextBar2+nextLine
+     
+     
+    chartPanel.strokeWeight(1);
+    chartPanel.stroke(110, 0, 210, 250); 
+    chartPanel.fill(0, 122, 255, 40);        
+    chartPanel.rect(xTmp,yTmp+chartMoverY,100,60); 
+    chartPanel.noStroke();
+    chartPanel.fill(0, 0, 155, 140);        
+    chartPanel.rect(xTmp,yTmp+chartMoverY,100,20); 
+
+    chartPanel.strokeWeight(1);
+    chartPanel.stroke(0, 0, 0, 255); 
+    chartPanel.fill(255, 255, 255, 255);        
+    chartPanel.textSize(10);
+    chartPanel.textStyle(NORMAL);
+    chartPanel.textFont('Georgia');
+    var textToButton = chartName2[(chartStage-chartWitchStage)*this.bars+a];
+    var textToButton1 = '';
+    var textToButton2 = '';
+  
+     
+    if (chartPanel.textWidth(textToButton) > 70){            
+     textToButton1 = textToButton.slice(0, round(70/chartPanel.textWidth(textToButton)*textToButton.length))+'-';
+     var moverX1 = (100-chartPanel.textWidth(textToButton1))/2
+     textToButton2 = textToButton.slice(round(70/chartPanel.textWidth(textToButton)*textToButton.length),500);
+     var moverX2 = (100-chartPanel.textWidth(textToButton2))/2
+     chartPanel.text(textToButton1,xTmp+moverX1,yTmp+chartMoverY+8);
+     chartPanel.text(textToButton2,xTmp+moverX2,yTmp+chartMoverY+18);
+     
+    }else{     
+     var moverX1 = (100-chartPanel.textWidth(textToButton))/2
+     chartPanel.text(textToButton,xTmp+moverX1,yTmp+chartMoverY+12);
+    }    
+     
+     
+    chartPanel.fill(0, 0, 255, 80);        
+    chartPanel.rect(xTmp,yTmp+20+chartMoverY,50,20); 
+     
+    chartPanel.strokeWeight(1);
+    chartPanel.textSize(10);
+    chartPanel.textStyle(BOLD);
+    chartPanel.stroke(0, 0, 0, 255); 
+    chartPanel.fill(255, 0, 0, 255);        
+    var textToButton = 'Rank '+(a+1); 
+    var moverX1 = (50-chartPanel.textWidth(textToButton))/2
+    chartPanel.text(textToButton,xTmp+moverX1,yTmp+chartMoverY+32);     
     
+    chartPanel.fill(0, 0, 255, 30);        
+    chartPanel.rect(xTmp+50,yTmp+20+chartMoverY,50,20); 
+      
+    if (a == 0){ 
+     for (var b = 0; b < this.bars; b++) {
+      allValueTmp = allValueTmp+round(parseInt(chartValue2[(chartStage-chartWitchStage)*this.bars+b]+(chartMoveCorrector[b]/(this.divider+1))*chartWitchStage))
+     }
+    }
+    
+     
+     
+    var lastValueTmp = round(round(parseInt(chartValue2[(chartStage-chartWitchStage)*this.bars+a]+(chartMoveCorrector[a]/(this.divider+1))*chartWitchStage))*100/allValueTmp,1)+'%' ; 
+
+     
+    chartPanel.strokeWeight(1);
+    chartPanel.textSize(10);
+    chartPanel.textFont('Arial');
+    chartPanel.textStyle(NORMAL);
+    chartPanel.stroke(0, 0, 0, 255); 
+    chartPanel.fill(0, 0, 255, 255);        
+    var moverX1 = (50-chartPanel.textWidth(lastValueTmp))/2
+    chartPanel.text(lastValueTmp.toLocaleString("en-US"),xTmp+50+moverX1,yTmp+32+chartMoverY);
+     
+
+     
+    chartPanel.stroke(0, 0, 0, 255); 
+    chartPanel.fill(0, 255, 255, 70);        
+    chartPanel.rect(xTmp,yTmp+40+chartMoverY,100,20); 
+
+    chartPanel.stroke(0, 0, 0, 255); 
+    chartPanel.fill(0, 0, 0, 255);        
+    var textToButton = round(parseInt(chartValue2[(chartStage-chartWitchStage)*this.bars+a]+(chartMoveCorrector[a]/(this.divider+1))*chartWitchStage)); 
+    var moverX1 = (100-chartPanel.textWidth(textToButton))/2
+    chartPanel.text(textToButton.toLocaleString("en-US"),xTmp+moverX1,yTmp+chartMoverY+52);
+   
+   }
+     
+     
+     
+     
+     
+     
+     
+     
+     
    chartPanel.fill(0, 0, 115, 35);        
    chartPanel.noStroke();        
 //   chartPanel.strokeWeight(2);
 //   chartPanel.stroke(0, 0, 0, 155);
 //   chartPanel.rect(this.nextBar2/3*2,this.nextBar2/3*2.5,wW/3,this.nextBar3+this.bars*(this.nextBar/3*0.7+this.nextBar/3),5,5,5,5); 
    chartPanel.rect(0,0,wW/3,tableYEnd+this.nextBar2); 
+//   chartPanel.rect(0,tableYEnd+this.nextBar2,200,yTmp+40+chartMoverY); 
     
     
     
