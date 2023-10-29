@@ -379,6 +379,7 @@ var chartTextWidth = 0;
 var chartTextWidth2 = 0;
 var chartValueWidth = 0;
 var chartValueWidth2 = 0;
+var chartValueWidth3 = 0;
 var chartMaxValue = -999999999;
 var chartMinValue = 999999999; 
 var scaleLegend = '';
@@ -422,6 +423,7 @@ var timerBeltDataEndX = 0;
 var timerBeltIsLoaded = 0;
 var maxScaleForBelt = 0;
 
+var extraChartYSize = 0;
 
 
 function playButtonNewController() {
@@ -821,7 +823,7 @@ function draw() {
   stroke(255,0,0,255)
   text(test1,100,100)  
   text(mouseX,100,130)  
-  text(scaleLegend,100,150)  
+  text(chartValueWidth3,100,150)  
   
  
  if ((chartPlayController != -1 && 
@@ -2075,7 +2077,8 @@ class PlayButton {
 //   var bCCChartTextWidth = chartTextWidth*(max(12,this.nextBar*0.3)/10)+10;
    var bCCChartTextWidth = chartTextWidth+10;
 //   var bCCChartValueWidth = chartValueWidth*(max(12,this.nextBar*0.3)/10)+10+circlePanelWidth*0.25;
-   var bCCChartValueWidth = chartValueWidth+circlePanelWidth*0.25;
+   var bCCChartValueWidth = chartValueWidth3;
+//   var bCCChartValueWidth = chartValueWidth+circlePanelWidth*0.25;
    var bCCControllerLength = bCCChartTextWidth;
    if (chartModelTypeForLegend == 0){
      bCCControllerLength = bCCChartValueWidth;
@@ -2203,7 +2206,8 @@ class PlayButton {
 //   var bCCChartTextWidth = chartTextWidth*(max(12,this.nextBar*0.3)/10)+10;
    var bCCChartTextWidth = chartTextWidth+10;
 //   var bCCChartValueWidth = chartValueWidth*(max(12,this.nextBar*0.3)/10)+10+circlePanelWidth*0.25;
-   var bCCChartValueWidth = chartValueWidth+circlePanelWidth*0.25;
+   var bCCChartValueWidth = chartValueWidth3;
+//   var bCCChartValueWidth = chartValueWidth+circlePanelWidth*0.25;
    var bCCControllerLength = bCCChartValueWidth;
    if (chartModelTypeForLegend == 0){
     bCCControllerLength = bCCChartValueWidth;
@@ -2331,7 +2335,8 @@ class TimerBelt {
 //   var bCCChartTextWidth = chartTextWidth*(max(12,this.nextBar*0.3)/10)+10;
    var bCCChartTextWidth = chartTextWidth+10;
 //   var bCCChartValueWidth = chartValueWidth*(max(12,this.nextBar*0.3)/10)+10+circlePanelWidth*0.25;
-   var bCCChartValueWidth = chartValueWidth+circlePanelWidth*0.25;
+   var bCCChartValueWidth = chartValueWidth3;
+//   var bCCChartValueWidth = chartValueWidth+circlePanelWidth*0.25;
    var bCCControllerLength = bCCChartTextWidth;
    if (chartModelTypeForLegend == 0){
     bCCControllerLength = bCCChartValueWidth;
@@ -2388,7 +2393,8 @@ class TimerBelt {
 //   var bCCChartTextWidth = chartTextWidth*(max(12,this.nextBar*0.3)/10)+10;
    var bCCChartTextWidth = chartTextWidth+10;
 //   var bCCChartValueWidth = chartValueWidth*(max(12,this.nextBar*0.3)/10)+10+circlePanelWidth*0.25;
-   var bCCChartValueWidth = chartValueWidth+circlePanelWidth*0.25;
+   var bCCChartValueWidth = chartValueWidth3;
+//    var bCCChartValueWidth = chartValueWidth+circlePanelWidth*0.25;
    var bCCControllerLength = max(this.nextBar2,bCCChartTextWidth);
    if (chartModelTypeForLegend == 0){
     bCCControllerLength = max(this.nextBar2,bCCChartValueWidth);
@@ -2520,7 +2526,7 @@ class TimerBelt {
   }
  }
   
-  
+ 
  timerBeltMobileCreator() {   
    
   if (chartCalculate > 0 && mobileDevice == 1 && chartModelTypeForLegend != 2){
@@ -2528,7 +2534,7 @@ class TimerBelt {
 //   var bCCChartTextWidth = chartTextWidth*(max(12,this.nextBar*0.3)/10)+10;
    var bCCChartTextWidth = chartTextWidth+10;
 //   var bCCChartValueWidth = chartValueWidth*(max(12,this.nextBar*0.3)/10)+10+circlePanelWidth*0.25;
-   var bCCChartValueWidth = chartValueWidth+circlePanelWidth*0.25;
+   var bCCChartValueWidth = chartValueWidth3;
    var bCCControllerLength = bCCChartTextWidth;
    if (chartModelTypeForLegend == 0){
     bCCControllerLength = bCCChartValueWidth;
@@ -2672,7 +2678,8 @@ class TimerBelt {
 //   var bCCChartTextWidth = chartTextWidth*(max(12,this.nextBar*0.3)/10)+10;
    var bCCChartTextWidth = chartTextWidth+10;
 //   var bCCChartValueWidth = chartValueWidth*(max(12,this.nextBar*0.3)/10)+10+circlePanelWidth*0.25;
-   var bCCChartValueWidth = chartValueWidth+circlePanelWidth*0.25;
+   var bCCChartValueWidth = chartValueWidth3;
+//   var bCCChartValueWidth = chartValueWidth+circlePanelWidth*0.25;
    var bCCControllerLength = bCCChartTextWidth;
    bCCControllerLength = bCCChartTextWidth;
    if (chartModelTypeForLegend == 0){
@@ -3237,6 +3244,7 @@ class StartChart {
    var bCCChartTextWidth = chartTextWidth+10;
 //   var bCCChartValueWidth = chartValueWidth*(max(12,this.nextBar*0.3)/10)+10+circlePanelWidth*0.25;
    var bCCChartValueWidth = chartValueWidth+circlePanelWidth*0.25+chartPanel.textWidth(scaleLegend);
+   chartValueWidth3 = bCCChartValueWidth
    var bCCControllerLength = bCCChartTextWidth;
 //   if (animationStartParameters[2] == 1){
     bCCControllerLength = bCCChartTextWidth;
@@ -3462,23 +3470,28 @@ class StartChart {
   if (chartModelTypeForLegend == 0){
 
    chartMoverY = 0;
+   chartPanel.textStyle(NORMAL);
+   chartPanel.textFont('Georgia');
+   chartPanel.textSize(max(12,this.nextBar*0.2));    
     //   var bCCChartTextWidth = chartTextWidth*(max(12,this.nextBar*0.3)/10)+10;
    var lCCChartTextWidth = chartTextWidth+10;
 //   var bCCChartValueWidth = chartValueWidth*(max(12,this.nextBar*0.3)/10)+10+circlePanelWidth*0.25;
-   var lCCChartValueWidth = chartValueWidth+circlePanelWidth*0.25;
+   var lCCChartValueWidth = max(chartValueWidth+circlePanelWidth*0.25,round(100+100*(this.bars > 1)+chartPanel.textWidth(round(1000).toLocaleString("en-US")+scaleLegend)+10));
+   chartValueWidth3 = lCCChartValueWidth 
    var lCCControllerLength = lCCChartTextWidth;
 //   if (animationStartParameters[2] == 1){
     lCCControllerLength = lCCChartTextWidth;
     lCCControllerLength = lCCChartValueWidth;
 //   }    
     
+   test1 = chartPanel.textWidth('1000'.toLocaleString("en-US"))
 
    var lCCMaxSize = round(wW-lCCChartTextWidth-lCCChartValueWidth);
    if (wW > wH) {
     lCCMaxSize = round(wW-lCCChartTextWidth-lCCChartValueWidth-panelWidth+panelMoveX);
    }
    var lCCWidth = lCCControllerLength;
-   var lCCYSize = round(this.nextBar*this.stages);
+   var lCCYSize = round(this.nextBar*this.stages-extraChartYSize);
    choiceSter1 == 1
 
    if (((firstRun > 0) && 
@@ -3508,10 +3521,10 @@ class StartChart {
      eval('g = tableChartJson.'+'_'+lCCChartName+'['+1+'];')
      eval('b = tableChartJson.'+'_'+lCCChartName+'['+2+'];')
      var pointX = round(map(cykl,0,chartValue.length/this.bars-1,lCCWidth,lCCWidth+lCCMaxSize));
-     var pointY = map(lCCChartValue,0,chartMaxValue,0,this.nextBar3*this.stages*1.0, true);
+     var pointY = map(lCCChartValue,0,chartMaxValue,0,this.nextBar3*this.stages*1.0-extraChartYSize, true);
 //      pointY = 100
      var doShape = 1;
-     lCCMaxForSize = max(lCCMaxForSize,map(lCCChartValue,0,chartMaxValue,0,this.nextBar3*this.stages*1.0, true)); 
+     lCCMaxForSize = max(lCCMaxForSize,map(lCCChartValue,0,chartMaxValue,0,this.nextBar3*this.stages*1.0-extraChartYSize, true)); 
 
      lCCMaxForSize2 = max(lCCMaxForSize2,lCCChartValue);
      chartLineXMax = max(chartLineXMax,pointX); 
@@ -3664,11 +3677,11 @@ class StartChart {
         if (chartLinePoints[lCCChartNextPack+6] == 1){ 
          chartPanel.beginShape();
          if(round(lCCActualY) == 0){
-          chartPanel.vertex(lCCActualX,max(2,min(628,lCCYSize-round(lCCActualY)*lCCCMultiply))+this.nextBar);
-          chartPanel.vertex(lCCActualX,max(2,min(628,lCCYSize-round(lCCActualY)*lCCCMultiply))+this.nextBar);
+          chartPanel.vertex(lCCActualX,max(2,min(628,lCCYSize-round(lCCActualY)*lCCCMultiply))+this.nextBar+extraChartYSize);
+          chartPanel.vertex(lCCActualX,max(2,min(628,lCCYSize-round(lCCActualY)*lCCCMultiply))+this.nextBar+extraChartYSize);
          }else{
-          chartPanel.vertex(lCCActualX,max(2,min(628,lCCYSize-lCCActualY*lCCCMultiply))+this.nextBar);
-          chartPanel.vertex(lCCActualX,max(2,min(628,lCCYSize-lCCActualY*lCCCMultiply))+this.nextBar);         
+          chartPanel.vertex(lCCActualX,max(2,min(628,lCCYSize-lCCActualY*lCCCMultiply))+this.nextBar+extraChartYSize);
+          chartPanel.vertex(lCCActualX,max(2,min(628,lCCYSize-lCCActualY*lCCCMultiply))+this.nextBar+extraChartYSize);         
          }
         }
          
@@ -3685,13 +3698,13 @@ class StartChart {
             var testX = lCCActualX+(chartLinePoints[lCCChartNextPack2+1]-lCCActualX)*lCCCMultiplyStage; 
             var testY = lCCActualY+(chartLinePoints[lCCChartNextPack2+2]-lCCActualY)*lCCCMultiplyStage; 
 
-            chartPanel.vertex(testX,max(2,min(628,lCCYSize-testY*lCCCMultiply))+this.nextBar);
-            chartPanel.vertex(testX,max(2,min(628,lCCYSize-testY*lCCCMultiply))+this.nextBar); 
+            chartPanel.vertex(testX,max(2,min(628,lCCYSize-testY*lCCCMultiply))+this.nextBar+extraChartYSize);
+            chartPanel.vertex(testX,max(2,min(628,lCCYSize-testY*lCCCMultiply))+this.nextBar+extraChartYSize); 
            }     
           }
           
           chartPanel.endShape();
-          chartPanel.ellipse(testX,max(2,min(628,lCCYSize-testY*lCCCMultiply))+this.nextBar,3); 
+          chartPanel.ellipse(testX,max(2,min(628,lCCYSize-testY*lCCCMultiply))+this.nextBar+extraChartYSize,3); 
           chartPanel.fill(lCCActualR, lCCActualG, lCCActualB, 255);
           chartPanel.strokeWeight(2-mobileDevice*1);
           chartPanel.textSize(max(12,this.nextBar*0.3));    
@@ -3701,20 +3714,20 @@ class StartChart {
           if (chartPanel.textWidth(textToButton) > this.x*0.4){            
            textToButton = textToButton.slice(0, round((this.x*0.4)/chartPanel.textWidth(textToButton)*textToButton.length))+'...';
           }
-          chartPanel.text(textToButton,testX+4,max(2+chartPanel.textSize(),min(628,lCCYSize-testY*lCCCMultiply)+this.nextBar));         
+          chartPanel.text(textToButton,testX+4,max(2+chartPanel.textSize(),min(628,lCCYSize-testY*lCCCMultiply)+this.nextBar+extraChartYSize));         
           chartPanel.stroke(lCCActualR, lCCActualG, lCCActualB, 255);
           chartPanel.noFill();
          
          }else{
-          chartPanel.curveVertex(lCCActualX,max(2,min(628,lCCYSize-lCCActualY*lCCCMultiply))+this.nextBar);
+          chartPanel.curveVertex(lCCActualX,max(2,min(628,lCCYSize-lCCActualY*lCCCMultiply))+this.nextBar+extraChartYSize);
          } 
         }
         
         if (chartLinePoints[lCCChartNextPack+6] == 3){ 
-         chartPanel.vertex(lCCActualX,max(2,min(628,lCCYSize-lCCActualY*lCCCMultiply))+this.nextBar);
-         chartPanel.vertex(lCCActualX,max(2,min(628,lCCYSize-lCCActualY*lCCCMultiply))+this.nextBar);
+         chartPanel.vertex(lCCActualX,max(2,min(628,lCCYSize-lCCActualY*lCCCMultiply))+this.nextBar+extraChartYSize);
+         chartPanel.vertex(lCCActualX,max(2,min(628,lCCYSize-lCCActualY*lCCCMultiply))+this.nextBar+extraChartYSize);
          chartPanel.endShape(); 
-         chartPanel.ellipse(lCCActualX,max(2,min(628,lCCYSize-lCCActualY*lCCCMultiply))+this.nextBar,3); 
+         chartPanel.ellipse(lCCActualX,max(2,min(628,lCCYSize-lCCActualY*lCCCMultiply))+this.nextBar+extraChartYSize,3); 
          if (chartStageFloor+1 >= chartValue.length/this.bars && lCCActualX == chartLineXMax){
 
           chartPanel.fill(lCCActualR, lCCActualG, lCCActualB, 255);
@@ -3726,7 +3739,7 @@ class StartChart {
           if (chartPanel.textWidth(textToButton) > this.x*0.4){            
            textToButton = textToButton.slice(0, round((this.x*0.4)/chartPanel.textWidth(textToButton)*textToButton.length))+'...';
           }
-          chartPanel.text(textToButton,lCCActualX+4,max(2+chartPanel.textSize(),min(628,lCCYSize-lCCActualY*lCCCMultiply))+this.nextBar);         
+          chartPanel.text(textToButton,lCCActualX+4,max(2+chartPanel.textSize(),min(628,lCCYSize-lCCActualY*lCCCMultiply))+this.nextBar+extraChartYSize);         
           chartPanel.stroke(lCCActualR, lCCActualG, lCCActualB, 255);
           chartPanel.noFill();
          }
@@ -3783,14 +3796,14 @@ class StartChart {
         chartPanel.strokeWeight(0);
         chartPanel.textSize(max(12,this.nextBar*0.2));    
         chartPanel.textAlign(RIGHT);
-        chartPanel.text(0,lCCWidth-lCCWidth/this.stages,lCCYSize+this.nextBar);
+        chartPanel.text(0,lCCWidth-5,lCCYSize+this.nextBar+extraChartYSize);
         chartPanel.textAlign(LEFT);
         chartPanel.strokeWeight(1);
         chartPanel.stroke(0, 0, 0, 150);
-        chartPanel.line(lCCWidth-lCCWidth/this.stages,
-                lCCYSize+this.nextBar,
+        chartPanel.line(lCCWidth,
+                lCCYSize+this.nextBar+extraChartYSize,
                 lCCWidth-lCCWidth/this.stages+lCCMaxSize,
-                lCCYSize+this.nextBar);         
+                lCCYSize+this.nextBar+extraChartYSize);         
         for (var b = 1; b <= bCCFirstDigit; b++) {
         
          var bCCMultiplierValue = bCCMultiplier*b;
@@ -3798,16 +3811,16 @@ class StartChart {
         chartPanel.textStyle(BOLD);
          chartPanel.textAlign(RIGHT);
          chartPanel.text(round(bCCMultiplierValue/scaleLegendValue).toLocaleString("en-US")+scaleLegend,
-                 lCCWidth-lCCWidth/this.stages,
-                 lCCYSize-lCCYSizeTmp*bCCMultiplierValue/bCCMaxSizeValue+this.nextBar);
+                 lCCWidth-5,
+                 lCCYSize-lCCYSizeTmp*bCCMultiplierValue/bCCMaxSizeValue+this.nextBar+extraChartYSize);
 //                 lCCYSize+lCCMaxSize*bCCMultiplierValue/bCCMaxSizeValue-textWidth(bCCMultiplierValue)/2);
          chartPanel.textAlign(LEFT);
          chartPanel.strokeWeight(1);
          chartPanel.stroke(0, 0, 0, 150);
          chartPanel.line(lCCWidth,
-                 lCCYSize-lCCYSizeTmp*bCCMultiplierValue/bCCMaxSizeValue+this.nextBar,
+                 lCCYSize-lCCYSizeTmp*bCCMultiplierValue/bCCMaxSizeValue+this.nextBar+extraChartYSize,
                  lCCWidth+lCCMaxSize,
-                 lCCYSize-lCCYSizeTmp*bCCMultiplierValue/bCCMaxSizeValue+this.nextBar);
+                 lCCYSize-lCCYSizeTmp*bCCMultiplierValue/bCCMaxSizeValue+this.nextBar+extraChartYSize);
          chartPanel.strokeWeight(0);
         }         
         chartPanel.noFill(); 
@@ -4212,19 +4225,24 @@ class StartChart {
   }
  }
   
-//    var bCCChartTextWidth = chartTextWidth+10;
-// //   var bCCChartValueWidth = chartValueWidth*(max(12,this.nextBar*0.3)/10)+10+circlePanelWidth*0.25;
-//    var bCCChartValueWidth = chartValueWidth+circlePanelWidth*0.25+chartPanel.textWidth(scaleLegend);
-//    var bCCControllerLength = bCCChartTextWidth;
-// //   if (animationStartParameters[2] == 1){
-//     bCCControllerLength = bCCChartTextWidth;
-// //   }
-// //   var bCCMaxSize = min(wW*0.8,wW*0.6+panelMoveX[0]*0.6,wW-bCCChartTextWidth-bCCChartValueWidth);
-//    var bCCMaxSize = wW-bCCChartTextWidth-bCCChartValueWidth;
-//    if (wW > wH) {
-//     bCCMaxSize = round(wW-bCCChartTextWidth-bCCChartValueWidth-panelWidth+panelMoveX*0.75);
-//    }
-//    var bCCWidth = bCCControllerLength;
+
+  
+  
+  
+  
+ extraChartController() { 
+
+  if (chartModelTypeForLegend == 0){
+   
+   
+   
+  }
+ }
+  
+  
+  
+  
+  
   
  extraChartCreator() { 
    
@@ -4407,7 +4425,6 @@ class StartChart {
    var allValueTmp = 0
    var maxInHeight = round((wH-this.nextBar2*3)/60)*2
    
-   test1 = maxInHeight
      
    for (var a = 0; a < min(this.bars,maxInHeight); a++) {
  
@@ -4510,8 +4527,9 @@ class StartChart {
    chartPanel.noStroke();        
 //   chartPanel.strokeWeight(2);
 //   chartPanel.stroke(0, 0, 0, 155);
-//   chartPanel.rect(this.nextBar2/3*2,this.nextBar2/3*2.5,wW/3,this.nextBar3+this.bars*(this.nextBar/3*0.7+this.nextBar/3),5,5,5,5); 
-   chartPanel.rect(100+100*(this.bars > 1),timerBeltDataEndY,wW/3,tableYEnd+this.nextBar2-timerBeltDataEndY); 
+//   chartPanel.rect(this.nextBar2/3*2,this.nextBar2/3*2.5,wW/3,this.nextBar3+this.bars*(this.nextBar/3*0.7+this.nextBar/3),5,5,5,5);
+   extraChartYSize = tableYEnd+this.nextBar2-timerBeltDataEndY  
+   chartPanel.rect(100+100*(this.bars > 1),timerBeltDataEndY,wW/3,extraChartYSize); 
 //   chartPanel.rect(0,tableYEnd+this.nextBar2,200,yTmp+40+chartMoverY); 
     
     
