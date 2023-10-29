@@ -417,6 +417,8 @@ var chartPlayController = -1;
 
 var timerBelt;
 var timerBeltData;
+var timerBeltDataEndY = 0;
+var timerBeltDataEndX = 0;
 var timerBeltIsLoaded = 0;
 var maxScaleForBelt = 0;
 
@@ -819,7 +821,7 @@ function draw() {
   stroke(255,0,0,255)
   text(test1,100,100)  
   text(mouseX,100,130)  
-  text(panelSter,100,150)  
+  text(scaleLegend,100,150)  
   
  
  if ((chartPlayController != -1 && 
@@ -2794,6 +2796,9 @@ class TimerBelt {
     
     
    timerBeltData.noFill();
+   timerBeltDataEndY = max(timerBeltData.textSize(),this.nextBar2*1.0-max(12,this.nextBar2*0.3))
+   timerBeltDataEndX = bCTDateSize+20
+   
    for (var a = 10; a > 0; a--) {
      
     var strokeTmp = 20*(a/10);
@@ -2805,14 +2810,14 @@ class TimerBelt {
     bCTDateSize = timerBeltData.textWidth(bCTText);
     timerBeltData.rect(0,
          0,
-         bCTDateSize+20,
-         max(timerBeltData.textSize(),this.nextBar2*1.0-max(12,this.nextBar2*0.3)),
+         timerBeltDataEndX,
+         timerBeltDataEndY,
          0,
          0,
          0,
          0);
    }   
-    
+       
    // map10ChartYStart = max(timerBeltData.textSize(),this.nextBar2*1.0-max(12,this.nextBar2*0.3));
    // map10ChartXEnd = bCTDateSize+20
      
@@ -2822,8 +2827,8 @@ class TimerBelt {
    bCTDateSize = timerBeltData.textWidth(bCTText);
    timerBeltData.rect(0,
         0,
-        bCTDateSize+20,
-        max(timerBeltData.textSize(),this.nextBar2*1.0-max(12,this.nextBar2*0.3)),
+        timerBeltDataEndX,
+        timerBeltDataEndY,
         0,
         0,
         0,
@@ -3102,11 +3107,12 @@ class StartChart {
        textToButton = textToButton.slice(0, round((this.x*0.4)/chartPanel.textWidth(textToButton)*textToButton.length))+'...';
       }
       chartTextWidth2 = max(chartTextWidth2,chartPanel.textWidth(textToButton));
-      chartValueWidth2 = max(chartValueWidth2,chartPanel.textWidth(chartValue[nextRepeat+x]));
+//      chartValueWidth2 = max(chartValueWidth2,chartPanel.textWidth(chartValue[nextRepeat+x]));
+      chartValueWidth2 = max(chartValueWidth2,chartPanel.textWidth(round(chartValue[nextRepeat+x]/scaleLegendValue).toLocaleString("en-US")+scaleLegend));
      }
       
     }
-     
+    
     for (var v = 0; v < this.divider; v++) {
       
      for (var c = 0; c < this.bars; c++) {
@@ -3846,77 +3852,6 @@ class StartChart {
     var yTmp = this.nextBar2*1.5+nextLine
     
 
-//---------------------------SCROLLOWANIE-------------------------//    
-    
-    if (a+1 == this.bars){
-      
-     if (mouseX < wW-this.x+moverX-this.nextBar2){
-      if (touches.length == 0){
-       if (pos1>pos2){
-        chartMoverY = max(min(0,wH-300-2*this.nextBar2-yTmp),chartMoverY-wH/(this.nextBar2*0.5));
-       }
-       if (pos1<pos2){
-        chartMoverY = min(0,chartMoverY+wH/(this.nextBar2*0.5));
-       }
-      }
-      
-      // if (touches.length == 1){
-      //  if (mousePressY > mouseY){
-      //   chartMoverY = max(min(0,wH-300-2*this.nextBar2-yTmp),chartMoverY-wH/(this.nextBar2*0.5));
-      //  }
-      //  if (mousePressY < mouseY){
-      //   chartMoverY = min(0,chartMoverY+wH/(this.nextBar2*0.5));
-      //  }
-      // }
-     }
-      
-    //  PRZESUNIECIE
-      
-      
-     if ((mouseIsPressed && 
-        pressedLong > 5 && 
-        mousePressX < wW-this.x+moverX-this.nextBar2) ||
-       (panelScrollerGoOn == 1)){
-
-      mousePressX2 = mousePressX;
-      mousePressY2 = mousePressY;       
-     
-      if (touches.length == 0){  
-       chartMoverY = max(min(0,wH-300-2*this.nextBar2-yTmp),chartMoverY-(mouseY2-mouseY));
-       panelScrollerGoOn = 1;
-      }
-
-      if (touches.length == 1 && moveCount2 > 1){  
-       chartMoverY = max(min(0,wH-300-2*this.nextBar2-yTmp),chartMoverY-(mouseY2-mouseY));
-       panelScrollerGoOn = 1;
-      }
-     }      
-      
-//     PRZESUNIĘCIE PO PUSZCZENIU    
-
-     if (choiceSter1 == 1){
-      if (mobileDevice != 0 && 
-        mousePressX < wW-this.x+moverX-this.nextBar2){
-    
-       panelStillScrolling = 1;
-      }
-     }
-   
-     if (moveCount != 0 && panelStillScrolling == 1){
-      chartMoverY = max(min(0,wH-300-2*this.nextBar2-yTmp),chartMoverY+(moveCount*moveVector));
-      mousePressX2 = 0;
-      mousePressY2 = 0;       
-     }    
-      
-      
-    
-     if (chartMoverY < wH-300-2*this.nextBar2-yTmp){
-      chartMoverY = wH-300-2*this.nextBar2-yTmp
-     }
-     if (chartMoverY > 0){
-      chartMoverY = 0
-     }
-    }
 
 
      
@@ -4201,6 +4136,77 @@ class StartChart {
     // var moverX1 = (200-chartPanel.textWidth(textToButton))/2
     // chartPanel.text(textToButton,xTmp+moverX1,yTmp+290+chartMoverY);
 
+//---------------------------SCROLLOWANIE-------------------------//    
+    
+    if (a+1 == this.bars){
+      
+     if (mouseX < wW-this.x+moverX-this.nextBar2){
+      if (touches.length == 0){
+       if (pos1>pos2){
+        chartMoverY = max(min(0,wH-300-2*this.nextBar2-yTmp),chartMoverY-wH/(this.nextBar2*0.5));
+       }
+       if (pos1<pos2){
+        chartMoverY = min(0,chartMoverY+wH/(this.nextBar2*0.5));
+       }
+      }
+      
+      // if (touches.length == 1){
+      //  if (mousePressY > mouseY){
+      //   chartMoverY = max(min(0,wH-300-2*this.nextBar2-yTmp),chartMoverY-wH/(this.nextBar2*0.5));
+      //  }
+      //  if (mousePressY < mouseY){
+      //   chartMoverY = min(0,chartMoverY+wH/(this.nextBar2*0.5));
+      //  }
+      // }
+     }
+      
+    //  PRZESUNIECIE
+      
+      
+     if ((mouseIsPressed && 
+        pressedLong > 5 && 
+        mousePressX < wW-this.x+moverX-this.nextBar2) ||
+       (panelScrollerGoOn == 1)){
+
+      mousePressX2 = mousePressX;
+      mousePressY2 = mousePressY;       
+     
+      if (touches.length == 0){  
+       chartMoverY = max(min(0,wH-300-2*this.nextBar2-yTmp),chartMoverY-(mouseY2-mouseY));
+       panelScrollerGoOn = 1;
+      }
+
+      if (touches.length == 1 && moveCount2 > 1){  
+       chartMoverY = max(min(0,wH-300-2*this.nextBar2-yTmp),chartMoverY-(mouseY2-mouseY));
+       panelScrollerGoOn = 1;
+      }
+     }      
+      
+//     PRZESUNIĘCIE PO PUSZCZENIU    
+
+     if (choiceSter1 == 1){
+      if (mobileDevice != 0 && 
+        mousePressX < wW-this.x+moverX-this.nextBar2){
+    
+       panelStillScrolling = 1;
+      }
+     }
+   
+     if (moveCount != 0 && panelStillScrolling == 1){
+      chartMoverY = max(min(0,wH-300-2*this.nextBar2-yTmp),chartMoverY+(moveCount*moveVector));
+      mousePressX2 = 0;
+      mousePressY2 = 0;       
+     }    
+      
+      
+    
+     if (chartMoverY < wH-300-2*this.nextBar2-yTmp){
+      chartMoverY = wH-300-2*this.nextBar2-yTmp
+     }
+     if (chartMoverY > 0){
+      chartMoverY = 0
+     }
+    }
      
    }    
   }
@@ -4228,20 +4234,24 @@ class StartChart {
     
    chartMoverY = 0;
 //   var bCCChartTextWidth = chartTextWidth*(max(12,this.nextBar*0.3)/10)+10;
-   var bCCChartTextWidth = chartTextWidth2+0;
+   var bCCChartTextWidth = chartTextWidth2+10;
 //   var bCCChartValueWidth = chartValueWidth*(max(12,this.nextBar*0.3)/10)+10+circlePanelWidth*0.25;
    var bCCChartValueWidth = chartValueWidth2+circlePanelWidth*0.25+chartPanel.textWidth(scaleLegend);
-   var bCCControllerLength = bCCChartTextWidth;
+//   var bCCControllerLength = bCCChartTextWidth;
+   var bCCControllerLength = 0;
 //   if (animationStartParameters[2] == 1){
-    bCCControllerLength = bCCChartTextWidth+this.nextBar2/3*2*0;
+//    bCCControllerLength = bCCChartTextWidth+this.nextBar2/3*2*0;
+    bCCControllerLength = bCCChartTextWidth;
 //   }
 //   var bCCMaxSize = min(wW*0.8,wW*0.6+panelMoveX[0]*0.6,wW-bCCChartTextWidth-bCCChartValueWidth);
-   var bCCMaxSize = wW/3-bCCChartTextWidth-chartValueWidth2-this.nextBar2/3*2-15;
+   var bCCMaxSize = wW/3-bCCChartTextWidth-chartValueWidth2-15;
+//   var bCCMaxSize = 100;
    if (wW > wH) {
 //    bCCMaxSize = round(400-bCCChartTextWidth-bCCChartValueWidth-panelWidth+panelMoveX*0.75);
-    bCCMaxSize = round(wW/3-bCCChartTextWidth-chartValueWidth2-this.nextBar2/3*2-15);
+    bCCMaxSize = round(wW/3-bCCChartTextWidth-chartValueWidth2-15);
    }
-   var bCCWidth = bCCControllerLength;
+//   var bCCWidth = bCCControllerLength+max(this.nextBar2,100*(this.bars > 1));
+   var bCCWidth = bCCControllerLength+100+100*(this.bars > 1);
     
     
     
@@ -4335,9 +4345,9 @@ class StartChart {
     chartPanel.textSize(max(10,this.nextBar2/3*0.3));    
     chartPanel.fill(111, 111, 111, 255);
     chartPanel.stroke(0,0,0,155);  
-
     
     var bCCChartValue = round(chartValue2[(chartStage-chartWitchStage)*this.bars+a]+(chartMoveCorrector[a]/(this.divider+1))*chartWitchStage);       
+     // var bCCChartValue = round(round(chartValue2[(chartStage-chartWitchStage)*this.bars+a]+(chartMoveCorrector[a]/(this.divider+1))*chartWitchStage)/scaleLegendValue);       
     var cSCChartName2 = chartName.indexOf(bCCChartName);
     var r = 0;
     var g = 0;
@@ -4358,7 +4368,7 @@ class StartChart {
     chartPanel.strokeWeight(1);
     chartPanel.stroke(0, 0, 0, 150); 
     chartPanel.fill(r, g, b, 255);        
-    chartPanel.rect(bCCWidth+this.nextBar2/3*2+5,
+    chartPanel.rect(bCCWidth+5,
          this.nextBar2+a*this.nextBar2/3-((this.nextBar2/3*chartPositionCorrector[a])/(this.divider+1))*chartWitchStage,
          bCCMaxSize*(bCCChartValue/3)/bCCMaxSizeValue,
          this.nextBar2/3*0.7,0,2,2,0); 
@@ -4376,12 +4386,12 @@ class StartChart {
     //      bCCWidth+this.nextBar2/3*2,
     //      this.nextBar3+this.nextBar/3*0.5+a*this.nextBar/3-((this.nextBar/3*chartPositionCorrector[a])/(this.divider+1))*chartWitchStage);
     chartPanel.text(textToButton,
-         bCCWidth+this.nextBar2/3*2,
+         bCCWidth,
          this.nextBar2+this.nextBar2/3*0.5+a*this.nextBar2/3-((this.nextBar2/3*chartPositionCorrector[a])/(this.divider+1))*chartWitchStage);
     chartPanel.fill(0, 0, 0, 255);
     chartPanel.textAlign(LEFT);     
     chartPanel.text(bCCChartValue.toLocaleString("en-US"),
-         bCCWidth+this.nextBar2/3*2+bCCMaxSize*(bCCChartValue/3)/bCCMaxSizeValue+10,
+         bCCWidth+bCCMaxSize*(bCCChartValue/3)/bCCMaxSizeValue+10,
          this.nextBar2+this.nextBar2/3*0.5+a*this.nextBar2/3-((this.nextBar2/3*chartPositionCorrector[a])/(this.divider+1))*chartWitchStage);
      
       
@@ -4395,7 +4405,7 @@ class StartChart {
      
    var maxInLine = 2
    var allValueTmp = 0
-   var maxInHeight = round((wH-this.nextBar2*3-tableYEnd)/60)*2
+   var maxInHeight = round((wH-this.nextBar2*3)/60)*2
    
    test1 = maxInHeight
      
@@ -4403,7 +4413,7 @@ class StartChart {
  
     var xTmp = (a % maxInLine)*100
     var nextLine = floor(a/maxInLine)*(60)
-    var yTmp = tableYEnd+this.nextBar2+nextLine
+    var yTmp = timerBeltDataEndY+nextLine
      
      
     chartPanel.strokeWeight(1);
@@ -4501,7 +4511,7 @@ class StartChart {
 //   chartPanel.strokeWeight(2);
 //   chartPanel.stroke(0, 0, 0, 155);
 //   chartPanel.rect(this.nextBar2/3*2,this.nextBar2/3*2.5,wW/3,this.nextBar3+this.bars*(this.nextBar/3*0.7+this.nextBar/3),5,5,5,5); 
-   chartPanel.rect(0,0,wW/3,tableYEnd+this.nextBar2); 
+   chartPanel.rect(100+100*(this.bars > 1),timerBeltDataEndY,wW/3,tableYEnd+this.nextBar2-timerBeltDataEndY); 
 //   chartPanel.rect(0,tableYEnd+this.nextBar2,200,yTmp+40+chartMoverY); 
     
     
