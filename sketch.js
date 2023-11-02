@@ -365,7 +365,6 @@ var chartGoogleDate = []
 
 var chartPanel;
 var chartPanelIsLoaded = 0;
-var extraChartPanelIsLoaded = 0;
 var chartPanelStart = 0;
 
 var chartName = []; 
@@ -423,8 +422,17 @@ var timerBeltDataEndX = 0;
 var timerBeltIsLoaded = 0;
 var maxScaleForBelt = 0;
 
+var extraChartPanelIsLoaded = 0;
+var extraChartPanel;
 var extraChartYSize = 0;
-
+var extraChartYEnd = 0;
+var extraChartController = -1;
+var extraChartControllerFill = -1;
+var extraChartSter = 0;
+var lastExtraChartSter = 0;
+var extraChartMoverX = 0;
+var extraChartYSizeEnd = 0;
+var extraChartDivider = 1;
 
 function playButtonNewController() {
  var xLongTmp = round(wH/(max(10,actualBars[max(7,actualButtonParameters[2])])+2));
@@ -683,7 +691,7 @@ function draw() {
         mousePressY >= playButtonController[2] &&
         mousePressY <= playButtonController[3]) || 
      (lastNowChangeForMap > 0) ||
-     timerBeltIsLoaded == 0
+     timerBeltIsLoaded == 0 || (lastExtraChartSter != 0 || extraChartSter != 0)
     ) { 
 
   timerBelt1 = new TimerBelt(actualDivider, actualBars[max(1,actualButtonParameters[2])], 10, panelWidth, 0.1);
@@ -709,13 +717,23 @@ function draw() {
   startChart1.barChartCreator();
   startChart1.lineChartCreator();
   startChart1.tileChartCreator();
+//  startChart1.extraChartCreator();
  }
   
+  
+ if (extraChartPanelIsLoaded == 0 || 1 == 1){ 
+  ExtraChart1 = new ExtraChart(actualDivider, actualBars[max(1,actualButtonParameters[2])], max(10,actualBars[actualButtonParameters[2]]), panelWidth, 0.1);
+  ExtraChart1.extraChartCreateGraphic();
+  ExtraChart1.extraChartController();
+ }
 
   
  chartPanel.remove();
  image(chartPanel,0,0);
   
+ extraChartPanel.remove(); 
+ image(extraChartPanel,0,max(wH/2-20,extraChartYEnd+5));
+ 
  circleHidePanel.remove();
  image(circleHidePanel,wW-panelWidth-(circlePanelWidth*0.1)*2.7+moverX,0);
 
@@ -734,11 +752,11 @@ function draw() {
   
  playButtonNewController() 
   
- if (playButtonStart == 1 ||
+ if (playButtonStart != 0 ||
      choiceSter1 == 1 ||
      playButtonIsLoaded == 0 ||
      chartModelTypeForLegend != chartLastModelTypeForLegend ||
-     (lastChartStage+1 == maxChartStage && chartStage == maxChartStage)
+     (lastChartStage+1 == maxChartStage && chartStage == maxChartStage) || (lastExtraChartSter != 0 || extraChartSter != 0)
     ) { 
 
   playButton1 = new PlayButton(actualDivider, actualBars[max(1,actualButtonParameters[2])], 10, panelWidth, 0.1);
@@ -815,21 +833,25 @@ function draw() {
  timerBeltIsLoaded = 1; 
  firstRun = max(0,firstRun-1)
  lastActualButton = actualButton;
- playButtonStart = 0; 
+ playButtonStart = max(0,playButtonStart-1); 
  lastNowChangeForMap = max(lastNowChangeForMap-1,0); 
+ lastExtraChartSter = extraChartSter 
   
  
   textSize(30);
   stroke(255,0,0,255)
   text(test1,100,100)  
-  text(mouseX,100,130)  
-  text(chartValueWidth3,100,150)  
+  text(extraChartMoverX,100,130)  
+  text(extraChartDivider,100,150)  
   
- 
+
  if ((chartPlayController != -1 && 
-     firstRun == 0 && 
+     firstRun == 0 &&
+     (extraChartMoverX == 0 || extraChartMoverX == wW) && 
      !mouseIsPressed && 
-     lastChoiceSter > 13 && 
+     lastChoiceSter > 13 &&
+     extraChartSter == 0 && 
+     lastExtraChartSter == 0 && 
      choiceTimer1 == 0 &&
      lastPosChange == 0 &&
      panelStillScrolling == 0)
@@ -2047,10 +2069,10 @@ class PlayButton {
   
  playButtonCreateGraphic(){
    
-  if ((playButtonStart == 1 ||
+  if ((playButtonStart != 0 ||
        choiceSter1 == 1 ||
      chartModelTypeForLegend != chartLastModelTypeForLegend) &&
-      playButtonIsLoaded == 1){
+      playButtonIsLoaded == 1 || (lastExtraChartSter != 0 || extraChartSter != 0)){
     playButton.clear();
 //   playButton.background(0,0,0,255);
   }
@@ -2073,6 +2095,7 @@ class PlayButton {
  playButtonPCPlayController() {   
    
   if (chartCalculate > 0 && mobileDevice == 0 && chartModelTypeForLegend != 2){
+       test1 = test1+1
 
 //   var bCCChartTextWidth = chartTextWidth*(max(12,this.nextBar*0.3)/10)+10;
    var bCCChartTextWidth = chartTextWidth+10;
@@ -2312,7 +2335,7 @@ class TimerBelt {
         mousePressY >= playButtonController[2] &&
         mousePressY <= playButtonController[3]) || 
      (lastNowChangeForMap > 0)) &&
-      timerBeltIsLoaded == 1){
+      timerBeltIsLoaded == 1 || (lastExtraChartSter != 0 || extraChartSter != 0)){
     timerBelt.clear();
     timerBeltData.clear();
 //   timerBeltData.background(0,0,0,255);
@@ -2898,7 +2921,7 @@ class StartChart {
    if (chartCalculate == 1 && ((chartPlayController == -1 && 
        chartStage % 15 == 0) ||
 //       chartLineRefresh == 1 ||
-       firstRun > 0)){
+       firstRun > 0) || (lastExtraChartSter != 0 || extraChartSter != 0)){
      
     doBackground = 1; 
     chartPanel.clear();
@@ -3476,7 +3499,7 @@ class StartChart {
     //   var bCCChartTextWidth = chartTextWidth*(max(12,this.nextBar*0.3)/10)+10;
    var lCCChartTextWidth = chartTextWidth+10;
 //   var bCCChartValueWidth = chartValueWidth*(max(12,this.nextBar*0.3)/10)+10+circlePanelWidth*0.25;
-   var lCCChartValueWidth = max(chartValueWidth+circlePanelWidth*0.25,round(100+100*(this.bars > 1)+chartPanel.textWidth(round(1000).toLocaleString("en-US")+scaleLegend)+10));
+   var lCCChartValueWidth = max(chartValueWidth+circlePanelWidth*0.25,round((100+100*(this.bars > 1)+chartPanel.textWidth(round(1000).toLocaleString("en-US")+scaleLegend)+10)*extraChartDivider));
    chartValueWidth3 = lCCChartValueWidth 
    var lCCControllerLength = lCCChartTextWidth;
 //   if (animationStartParameters[2] == 1){
@@ -3484,7 +3507,6 @@ class StartChart {
     lCCControllerLength = lCCChartValueWidth;
 //   }    
     
-   test1 = chartPanel.textWidth('1000'.toLocaleString("en-US"))
 
    var lCCMaxSize = round(wW-lCCChartTextWidth-lCCChartValueWidth);
    if (wW > wH) {
@@ -3495,7 +3517,7 @@ class StartChart {
    choiceSter1 == 1
 
    if (((firstRun > 0) && 
-        chartStage % 15 == 0)|| lastNowChangeForMap > 0 || firstRun > 0) {
+        chartStage % 15 == 0)|| lastNowChangeForMap > 0 || firstRun > 0 || (extraChartMoverX != 0 && extraChartMoverX != wW)) {
     
     chartLineXMax = 0; 
     chartLinePositions = [];
@@ -3627,7 +3649,7 @@ class StartChart {
     
    if (chartCalculate == 1 && ((chartPlayController == -1 && 
        chartStage % 15 == 0) ||
-       firstRun > 0)){ 
+       firstRun > 0) || (extraChartMoverX != 0 && extraChartMoverX != wW)){ 
 
     var chartStageTmp = chartStage/(this.divider+1);
     var chartStageFloor = Math.floor(chartStageTmp); 
@@ -4225,20 +4247,6 @@ class StartChart {
   }
  }
   
-
-  
-  
-  
-  
- extraChartController() { 
-
-  if (chartModelTypeForLegend == 0){
-   
-   
-   
-  }
- }
-  
   
   
   
@@ -4246,10 +4254,10 @@ class StartChart {
   
  extraChartCreator() { 
    
-  if (chartModelTypeForLegend == 0){
-    
+  if (chartModelTypeForLegend == 0 && extraChartMoverX != wW){
+   
 
-    
+   
    chartMoverY = 0;
 //   var bCCChartTextWidth = chartTextWidth*(max(12,this.nextBar*0.3)/10)+10;
    var bCCChartTextWidth = chartTextWidth2+10;
@@ -4275,7 +4283,7 @@ class StartChart {
     
      
    
-   if(chartStage*this.bars % (this.divider+1)*this.bars == 0 || (chartLineRefresh == 1 && nowChange > 0) || buttonChanged == 1){
+   if(chartStage*this.bars % (this.divider+1)*this.bars == 0 || (chartLineRefresh == 1 && nowChange > 0) || buttonChanged == 1 || extraChartMoverX != 0){
     if (firstRun > 0){
      chartStage = Math.floor(chartStage/(this.divider+1))*(this.divider+1);
     }
@@ -4334,8 +4342,8 @@ class StartChart {
     }
    }
         
-   var tableYEnd = 0;
-   if (chartStage % 15 == 0 || firstRun > 0) {
+   extraChartYSizeEnd = 0;
+   if (chartStage % 15 == 0 || firstRun > 0 || extraChartMoverX != 0) {
     
    for (var a = 0; a < min(3,this.bars); a++) {
       
@@ -4381,12 +4389,12 @@ class StartChart {
       textToButton = textToButton.slice(0, round((this.x*0.4)/chartPanel.textWidth(textToButton)*textToButton.length))+'...';
     }
      
-   var tableYEnd = this.nextBar2/2+a*this.nextBar2/3;
+   extraChartYSizeEnd = this.nextBar2/2+a*this.nextBar2/3;
      
     chartPanel.strokeWeight(1);
     chartPanel.stroke(0, 0, 0, 150); 
     chartPanel.fill(r, g, b, 255);        
-    chartPanel.rect(bCCWidth+5,
+    chartPanel.rect(bCCWidth+5-extraChartMoverX,
          this.nextBar2+a*this.nextBar2/3-((this.nextBar2/3*chartPositionCorrector[a])/(this.divider+1))*chartWitchStage,
          bCCMaxSize*(bCCChartValue/3)/bCCMaxSizeValue,
          this.nextBar2/3*0.7,0,2,2,0); 
@@ -4404,12 +4412,12 @@ class StartChart {
     //      bCCWidth+this.nextBar2/3*2,
     //      this.nextBar3+this.nextBar/3*0.5+a*this.nextBar/3-((this.nextBar/3*chartPositionCorrector[a])/(this.divider+1))*chartWitchStage);
     chartPanel.text(textToButton,
-         bCCWidth,
+         bCCWidth-extraChartMoverX,
          this.nextBar2+this.nextBar2/3*0.5+a*this.nextBar2/3-((this.nextBar2/3*chartPositionCorrector[a])/(this.divider+1))*chartWitchStage);
     chartPanel.fill(0, 0, 0, 255);
     chartPanel.textAlign(LEFT);     
     chartPanel.text(bCCChartValue.toLocaleString("en-US"),
-         bCCWidth+bCCMaxSize*(bCCChartValue/3)/bCCMaxSizeValue+10,
+         bCCWidth+bCCMaxSize*(bCCChartValue/3)/bCCMaxSizeValue+10-extraChartMoverX,
          this.nextBar2+this.nextBar2/3*0.5+a*this.nextBar2/3-((this.nextBar2/3*chartPositionCorrector[a])/(this.divider+1))*chartWitchStage);
      
       
@@ -4436,10 +4444,10 @@ class StartChart {
     chartPanel.strokeWeight(1);
     chartPanel.stroke(110, 0, 210, 250); 
     chartPanel.fill(0, 122, 255, 40);        
-    chartPanel.rect(xTmp,yTmp+chartMoverY,100,60); 
+    chartPanel.rect(xTmp-extraChartMoverX,yTmp+chartMoverY,100,60); 
     chartPanel.noStroke();
     chartPanel.fill(0, 0, 155, 140);        
-    chartPanel.rect(xTmp,yTmp+chartMoverY,100,20); 
+    chartPanel.rect(xTmp-extraChartMoverX,yTmp+chartMoverY,100,20); 
 
     chartPanel.strokeWeight(1);
     chartPanel.stroke(0, 0, 0, 255); 
@@ -4457,17 +4465,17 @@ class StartChart {
      var moverX1 = (100-chartPanel.textWidth(textToButton1))/2
      textToButton2 = textToButton.slice(round(70/chartPanel.textWidth(textToButton)*textToButton.length),500);
      var moverX2 = (100-chartPanel.textWidth(textToButton2))/2
-     chartPanel.text(textToButton1,xTmp+moverX1,yTmp+chartMoverY+8);
-     chartPanel.text(textToButton2,xTmp+moverX2,yTmp+chartMoverY+18);
+     chartPanel.text(textToButton1,xTmp+moverX1-extraChartMoverX,yTmp+chartMoverY+8);
+     chartPanel.text(textToButton2,xTmp+moverX2-extraChartMoverX,yTmp+chartMoverY+18);
      
     }else{     
      var moverX1 = (100-chartPanel.textWidth(textToButton))/2
-     chartPanel.text(textToButton,xTmp+moverX1,yTmp+chartMoverY+12);
+     chartPanel.text(textToButton,xTmp+moverX1-extraChartMoverX,yTmp+chartMoverY+12);
     }    
      
      
     chartPanel.fill(0, 0, 255, 80);        
-    chartPanel.rect(xTmp,yTmp+20+chartMoverY,50,20); 
+    chartPanel.rect(xTmp-extraChartMoverX,yTmp+20+chartMoverY,50,20); 
      
     chartPanel.strokeWeight(1);
     chartPanel.textSize(10);
@@ -4476,10 +4484,10 @@ class StartChart {
     chartPanel.fill(255, 0, 0, 255);        
     var textToButton = 'Rank '+(a+1); 
     var moverX1 = (50-chartPanel.textWidth(textToButton))/2
-    chartPanel.text(textToButton,xTmp+moverX1,yTmp+chartMoverY+32);     
+    chartPanel.text(textToButton,xTmp+moverX1-extraChartMoverX,yTmp+chartMoverY+32);     
     
     chartPanel.fill(0, 0, 255, 30);        
-    chartPanel.rect(xTmp+50,yTmp+20+chartMoverY,50,20); 
+    chartPanel.rect(xTmp+50-extraChartMoverX,yTmp+20+chartMoverY,50,20); 
       
     if (a == 0){ 
      for (var b = 0; b < this.bars; b++) {
@@ -4499,22 +4507,22 @@ class StartChart {
     chartPanel.stroke(0, 0, 0, 255); 
     chartPanel.fill(0, 0, 255, 255);        
     var moverX1 = (50-chartPanel.textWidth(lastValueTmp))/2
-    chartPanel.text(lastValueTmp.toLocaleString("en-US"),xTmp+50+moverX1,yTmp+32+chartMoverY);
+    chartPanel.text(lastValueTmp.toLocaleString("en-US"),xTmp+50+moverX1-extraChartMoverX,yTmp+32+chartMoverY);
      
 
      
     chartPanel.stroke(0, 0, 0, 255); 
     chartPanel.fill(0, 255, 255, 70);        
-    chartPanel.rect(xTmp,yTmp+40+chartMoverY,100,20); 
+    chartPanel.rect(xTmp-extraChartMoverX,yTmp+40+chartMoverY,100,20); 
+    extraChartYEnd = yTmp+40+chartMoverY+20
 
     chartPanel.stroke(0, 0, 0, 255); 
     chartPanel.fill(0, 0, 0, 255);        
     var textToButton = round(parseInt(chartValue2[(chartStage-chartWitchStage)*this.bars+a]+(chartMoveCorrector[a]/(this.divider+1))*chartWitchStage)); 
     var moverX1 = (100-chartPanel.textWidth(textToButton))/2
-    chartPanel.text(textToButton.toLocaleString("en-US"),xTmp+moverX1,yTmp+chartMoverY+52);
-   
-   }
+    chartPanel.text(textToButton.toLocaleString("en-US"),xTmp+moverX1-extraChartMoverX,yTmp+chartMoverY+52);
      
+   }
      
      
      
@@ -4528,9 +4536,9 @@ class StartChart {
 //   chartPanel.strokeWeight(2);
 //   chartPanel.stroke(0, 0, 0, 155);
 //   chartPanel.rect(this.nextBar2/3*2,this.nextBar2/3*2.5,wW/3,this.nextBar3+this.bars*(this.nextBar/3*0.7+this.nextBar/3),5,5,5,5);
-   extraChartYSize = tableYEnd+this.nextBar2-timerBeltDataEndY  
-   chartPanel.rect(100+100*(this.bars > 1),timerBeltDataEndY,wW/3,extraChartYSize); 
-//   chartPanel.rect(0,tableYEnd+this.nextBar2,200,yTmp+40+chartMoverY); 
+   extraChartYSize = (extraChartYSizeEnd+this.nextBar2-timerBeltDataEndY)*extraChartDivider
+   chartPanel.rect(100+100*(this.bars > 1)-extraChartMoverX,timerBeltDataEndY,wW/3,extraChartYSize); 
+//   chartPanel.rect(0,extraChartYSizeEnd+this.nextBar2,200,yTmp+40+chartMoverY); 
     
     
     
@@ -4539,3 +4547,125 @@ class StartChart {
  }
 }
 
+
+
+class ExtraChart {
+ constructor(divider, bars, stages, x, close) {
+  this.nextBar = round(wH/(max(10,bars)+2));
+  this.nextBar2 = round(wH/(max(10,bars)+2));
+  if (this.nextBar2 < 40){
+   this.tmp = round((40-this.nextBar2)/10)*2;
+   this.nextBar2 = 40;
+   this.nextBar = this.nextBar-this.tmp-this.tmp*0.5     
+  }
+  this.nextBar3 = round(wH/(10+2));
+  this.bars = bars; 
+  this.stages = stages; 
+  this.divider = divider;
+  this.long = x*close;
+  this.x = x;
+ }
+
+
+ extraChartCreateGraphic(){
+
+  if (extraChartPanelIsLoaded == 1){ 
+   extraChartPanel.clear();    
+  }
+      
+  if (extraChartPanelIsLoaded == 0) {
+   extraChartPanel = createGraphics(this.nextBar2+2, this.nextBar2+2);
+  }
+ }
+  
+  
+ extraChartController() { 
+
+  if (chartModelTypeForLegend == 0){
+   
+   extraChartPanel.fill(133, 133, 133, 155);    
+//   extraChartPanel.noFill();    
+    
+  
+   if (extraChartControllerFill == 1){
+    extraChartPanel.noStroke()    
+   } else {
+    extraChartPanel.strokeWeight(2);
+    extraChartPanel.stroke(111, 111, 255, 55);        
+   }
+     
+     
+     
+   extraChartPanel.rect(0,1,this.nextBar2,this.nextBar2,0,5,5,0);
+   if (extraChartControllerFill == 1){
+    extraChartPanel.fill(255, 255, 255, 255);    
+   } else {
+    extraChartPanel.fill(255, 0, 0, 255);          
+   }
+     
+   if (extraChartController == 1){ 
+    extraChartPanel.triangle(this.nextBar2/4,
+                         this.nextBar2/5,
+                         this.nextBar2/4,
+                         (this.nextBar2/5)*4,
+                         this.nextBar2*0.8,
+                         this.nextBar2/2);            
+   } else {
+    extraChartPanel.triangle(this.nextBar2*0.75,
+                         this.nextBar2/5,
+                         this.nextBar2*0.75,
+                         (this.nextBar2/5)*4,
+                         this.nextBar2*0.2,
+                         this.nextBar2/2);                  
+   }
+     
+     
+  }    
+    
+  if (mouseX <= this.nextBar2 &&
+      mouseY >= max(wH/2-20,extraChartYEnd+5) &&
+      mouseY <= max(wH/2-20,extraChartYEnd+5)+this.nextBar2 
+     ){
+   extraChartControllerFill = -1   
+   if (choiceSter1 == 1){
+    if (lastChoiceSter > 2 && 
+        choiceTimer1 > 1 && 
+        choiceTimer1 < 10
+     && mousePressX <= this.nextBar2
+     && mousePressY >= max(wH/2-20,extraChartYEnd+5)
+     && mousePressY <= max(wH/2-20,extraChartYEnd+5)+this.nextBar2){
+       
+     extraChartController = extraChartController*(-1)       
+     extraChartSter = 1;
+     firstRun = 35 
+    }
+   }    
+  } else {
+   extraChartControllerFill = 1   
+  }
+    
+  if (extraChartSter == 1){
+   if (extraChartController == 1){
+    extraChartMoverX = min(wW,extraChartMoverX+wW/30) 
+    extraChartDivider = 1-(extraChartMoverX*100/wW)/100
+    if (extraChartMoverX == wW){
+     extraChartSter = 0; 
+     extraChartYSize = 0;
+     playButtonStart = 2 
+     firstRun = 12 
+      
+    }
+   }
+   if (extraChartController == -1){
+    extraChartMoverX = max(0,extraChartMoverX-wW/30)
+    extraChartDivider = 1-(extraChartMoverX*100/wW)/100
+    if (extraChartMoverX == 0){
+     extraChartSter = 0;
+     extraChartDivider = 1 
+     playButtonStart = 2 
+     firstRun = 12 
+    }
+   }     
+  }
+ }
+}
