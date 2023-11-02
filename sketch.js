@@ -3124,7 +3124,9 @@ class StartChart {
      if (chartPanel.textWidth(textToButton) > this.x*0.4){            
       textToButton = textToButton.slice(0, round((this.x*0.4)/chartPanel.textWidth(textToButton)*textToButton.length))+'...';
      }
+     chartPanel.textFont('Georgia');
      chartTextWidth = max(chartTextWidth,chartPanel.textWidth(textToButton));
+     chartPanel.textFont('Arial');
      chartValueWidth = max(chartValueWidth,chartPanel.textWidth(chartValue[nextRepeat+x]));
 
      if (x < min(3,this.bars)){ 
@@ -3138,6 +3140,7 @@ class StartChart {
       }
       chartTextWidth2 = max(chartTextWidth2,chartPanel.textWidth(textToButton));
 //      chartValueWidth2 = max(chartValueWidth2,chartPanel.textWidth(chartValue[nextRepeat+x]));
+      chartPanel.textFont('Arial');
       chartValueWidth2 = max(chartValueWidth2,chartPanel.textWidth(round(chartValue[nextRepeat+x]/scaleLegendValue).toLocaleString("en-US")+scaleLegend));
      }
       
@@ -3345,6 +3348,7 @@ class StartChart {
     // if (a == 0){
     //  var bCCMaxSizeValue = chartValue2[chartStage*this.bars];
     // }
+    chartPanel.textFont('Arial');
     var bCCChartValue = round(chartValue2[(chartStage-chartWitchStage)*this.bars+a]+(chartMoveCorrector[a]/(this.divider+1))*chartWitchStage);
        
 
@@ -3384,7 +3388,7 @@ class StartChart {
        
        
      chartPanel.textStyle(BOLD);
-     chartPanel.textFont('Georgia');
+     chartPanel.textFont('Arial');
      chartPanel.fill(0, 0, 0, 255);
      chartPanel.strokeWeight(0);
      chartPanel.textSize(max(12,this.nextBar*0.2));    
@@ -3462,6 +3466,7 @@ class StartChart {
          bCCWidth-5,
          this.nextBar3+this.nextBar*0.5+a*this.nextBar-((this.nextBar*chartPositionCorrector[a])/(this.divider+1))*chartWitchStage);
 
+    chartPanel.textFont('Arial');
     chartPanel.fill(0, 0, 0, 255);
     chartPanel.textAlign(LEFT);     
     chartPanel.text(bCCChartValue.toLocaleString("en-US"),
@@ -3961,8 +3966,9 @@ class StartChart {
      }
     }
      
-    chartPanel.strokeWeight(1);
+    chartPanel.strokeWeight(2);
     chartPanel.textSize(15);
+    chartPanel.textFont('Arial');
     chartPanel.textStyle(BOLD);
     chartPanel.stroke(0, 0, 0, 255); 
     chartPanel.fill(R, G, B, 255);        
@@ -3970,6 +3976,7 @@ class StartChart {
     chartPanel.text(lastValueTmp.toLocaleString("en-US"),xTmp+100+moverX1,yTmp+80+chartMoverY);
      
      
+    chartPanel.strokeWeight(1);
     chartPanel.stroke(0, 0, 0, 255); 
     chartPanel.fill(0, 255, 255, 70);        
     chartPanel.rect(xTmp,yTmp+100+chartMoverY,200,30); 
@@ -4131,7 +4138,7 @@ class StartChart {
       chartPanel.stroke(0, 0, 0, 65);
       if (d == maxLine){
        chartPanel.textStyle(NORMAL);
-       chartPanel.textFont('Georgia');
+       chartPanel.textFont('Arial');
        chartPanel.stroke(255, 0, 0, 255); 
        chartPanel.textSize(10);    
        chartPanel.strokeWeight(1);
@@ -4147,7 +4154,7 @@ class StartChart {
       
       if (d == minLine){
        chartPanel.textStyle(NORMAL);
-       chartPanel.textFont('Georgia');
+       chartPanel.textFont('Arial');
        chartPanel.stroke(0, 0, 255, 255); 
        chartPanel.textSize(10);    
        chartPanel.strokeWeight(1);
