@@ -40,7 +40,7 @@ function lastMouse() {
 
 function windowResized() {
  loop(); 
- resizeCanvas(document.documentElement.clientWidth, document.documentElement.clientHeight)
+// resizeCanvas(document.documentElement.clientWidth, document.documentElement.clientHeight)
  firstRun = 10;
  panelIsLoaded = 0;
  leftButtonsPanelIsLoaded = 0;
