@@ -39,6 +39,8 @@ function lastMouse() {
 }
 
 function windowResized() {
+ loop(); 
+ resizeCanvas(document.documentElement.clientWidth, document.documentElement.clientHeight)
  firstRun = 10;
  panelIsLoaded = 0;
  leftButtonsPanelIsLoaded = 0;
@@ -842,7 +844,7 @@ function draw() {
   stroke(255,0,0,255)
   text(test1,100,100)  
   text(extraChartMoverX,100,130)  
-  text(extraChartDivider,100,150)  
+  text(firstRun,100,150)  
   
 
  if ((chartPlayController != -1 && 
