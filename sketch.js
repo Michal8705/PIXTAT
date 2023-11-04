@@ -39,7 +39,10 @@ function lastMouse() {
 }
 
 function windowResized() {
- loop(); 
+ loop();
+ redraw(1)
+// loop();
+       test1 = test1+1
 // resizeCanvas(document.documentElement.clientWidth, document.documentElement.clientHeight)
  firstRun = 10;
  panelIsLoaded = 0;
@@ -583,6 +586,7 @@ function setup() {
 
 
 function draw() {
+ loop();
   
  moveParameters();
   
@@ -2097,7 +2101,6 @@ class PlayButton {
  playButtonPCPlayController() {   
    
   if (chartCalculate > 0 && mobileDevice == 0 && chartModelTypeForLegend != 2){
-       test1 = test1+1
 
 //   var bCCChartTextWidth = chartTextWidth*(max(12,this.nextBar*0.3)/10)+10;
    var bCCChartTextWidth = chartTextWidth+10;
