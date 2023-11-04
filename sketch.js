@@ -42,7 +42,6 @@ function windowResized() {
 // loop();
  redraw(1)
 // loop();
-       test1 = test1+1
  resizeCanvas(document.documentElement.clientWidth, document.documentElement.clientHeight)
  firstRun = 10;
  panelIsLoaded = 0;
@@ -712,6 +711,7 @@ function draw() {
 
  if (chartPanelIsLoaded == 0 || chartPanelStart == 1 || chartPlayController == -1){
   
+       test1 = test1+1
    
   startChart1 = new StartChart(actualDivider, actualBars[max(1,actualButtonParameters[2])], max(10,actualBars[actualButtonParameters[2]]), panelWidth, 0.1);
   startChart1.chartCreateGraphic();
@@ -848,7 +848,7 @@ function draw() {
   stroke(255,0,0,255)
   text(test1,100,100)  
   text(extraChartMoverX,100,130)  
-  text(firstRun+200,100,150)  
+  text(firstRun+300,100,150)  
   
 
  if ((chartPlayController != -1 && 
