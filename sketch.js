@@ -2087,7 +2087,7 @@ class PlayButton {
    if(mobileDevice == 0){
     playButton = createGraphics(this.nextBar2, this.nextBar2);
    }else{
-    playButton = createGraphics(chartValueWidth*(max(12,this.nextBar*0.3)/10)+10, this.nextBar2); 
+    playButton = createGraphics(chartValueWidth3*(max(12,this.nextBar*0.3)/10)+10, this.nextBar2); 
    }
      
 //   playButton.background(0,0,0,255);
@@ -2278,12 +2278,12 @@ class PlayButton {
    playButton.noStroke();
    playButton.fill(255,255,255,255);
 
-   // playButton.triangle(bCCControllerLength*0.30, 
-   //          this.nextBar2*0.15, 
-   //          bCCControllerLength*0.30, 
-   //          this.nextBar2*0.85, 
-   //          bCCControllerLength*0.70, 
-   //          this.nextBar2*0.50);
+   playButton.triangle(bCCControllerLength*0.30, 
+            this.nextBar2*0.15, 
+            bCCControllerLength*0.30, 
+            this.nextBar2*0.85, 
+            bCCControllerLength*0.70, 
+            this.nextBar2*0.50);
    }else{
      
     playButton.stroke(255,0,0,255);
