@@ -43,7 +43,7 @@ function windowResized() {
  redraw(1)
 // loop();
        test1 = test1+1
-// resizeCanvas(document.documentElement.clientWidth, document.documentElement.clientHeight)
+ resizeCanvas(document.documentElement.clientWidth, document.documentElement.clientHeight)
  firstRun = 10;
  panelIsLoaded = 0;
  leftButtonsPanelIsLoaded = 0;
@@ -848,7 +848,7 @@ function draw() {
   stroke(255,0,0,255)
   text(test1,100,100)  
   text(extraChartMoverX,100,130)  
-  text(firstRun+100,100,150)  
+  text(firstRun+200,100,150)  
   
 
  if ((chartPlayController != -1 && 
