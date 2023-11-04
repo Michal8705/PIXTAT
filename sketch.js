@@ -586,7 +586,7 @@ function setup() {
 
 
 function draw() {
-// loop();
+ loop();
   
  moveParameters();
   
