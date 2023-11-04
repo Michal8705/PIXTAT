@@ -703,7 +703,7 @@ function draw() {
   timerBelt1 = new TimerBelt(actualDivider, actualBars[max(1,actualButtonParameters[2])], 10, panelWidth, 0.1);
   timerBelt1.timerBeltCreateGraphic();
   timerBelt1.timerBeltController();
-  timerBelt1.timerBeltPCcreator();
+  timerBelt1.timerBeltPCCreator();
   timerBelt1.timerBeltMobileCreator();
   timerBelt1.timerBelt();
  }
@@ -2278,12 +2278,12 @@ class PlayButton {
    playButton.noStroke();
    playButton.fill(255,255,255,255);
 
-   playButton.triangle(bCCControllerLength*0.30, 
-            this.nextBar2*0.15, 
-            bCCControllerLength*0.30, 
-            this.nextBar2*0.85, 
-            bCCControllerLength*0.70, 
-            this.nextBar2*0.50);
+   // playButton.triangle(bCCControllerLength*0.30, 
+   //          this.nextBar2*0.15, 
+   //          bCCControllerLength*0.30, 
+   //          this.nextBar2*0.85, 
+   //          bCCControllerLength*0.70, 
+   //          this.nextBar2*0.50);
    }else{
      
     playButton.stroke(255,0,0,255);
@@ -2414,7 +2414,7 @@ class TimerBelt {
 
  
   
- timerBeltPCcreator() {   
+ timerBeltPCCreator() {   
    
   if (chartCalculate > 0 && mobileDevice == 0 && chartModelTypeForLegend != 2){
     
