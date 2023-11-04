@@ -39,7 +39,7 @@ function lastMouse() {
 }
 
 function windowResized() {
- loop();
+// loop();
  redraw(1)
 // loop();
        test1 = test1+1
