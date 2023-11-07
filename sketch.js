@@ -814,7 +814,7 @@ function draw() {
  }  
   
  lastChartStage = chartStage
- if (chartStage >= 0 && chartPlayController == (-1) && chartStop == 0 && chartModelTypeForLegend != 2){
+ if (chartStage >= 0 && chartPlayController == (-1) && chartStop == 0 && chartModelTypeForLegend != 2 || isWindowsResized == 1){
   chartStage = min(chartStage+1,maxChartStage);
 //  chartStage = chartStage+1;
   chartWitchStage = chartWitchStage+1;
@@ -850,7 +850,7 @@ function draw() {
   stroke(255,0,0,255)
   text(test1,100,100)  
   text(extraChartMoverX,100,130)  
-  text(firstRun+500,100,150)  
+  text(firstRun+300,100,150)  
   
 
  if ((chartPlayController != -1 && 
