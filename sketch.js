@@ -818,12 +818,12 @@ function draw() {
   chartStage = min(chartStage+1,maxChartStage);
 //  chartStage = chartStage+1;
   chartWitchStage = chartWitchStage+1;
-            test1 = test1+1
  } 
   
  if (chartModelTypeForLegend != chartLastModelTypeForLegend){
      chartStage = Math.floor(chartStage/(actualDivider+1))*(actualDivider+1);
  }
+            test1 = moveCount
   
  choiceSter2 = choiceSter1 
  choiceController();
@@ -850,7 +850,7 @@ function draw() {
   stroke(255,0,0,255)
   text(test1,100,100)  
   text(extraChartMoverX,100,130)  
-  text(firstRun+300,100,150)  
+  text(firstRun+400,100,150)  
   
 
  if ((chartPlayController != -1 && 
