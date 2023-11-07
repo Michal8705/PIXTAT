@@ -739,12 +739,6 @@ function draw() {
   
  extraChartPanel.remove(); 
  image(extraChartPanel,0,max(wH/2-20,extraChartYEnd+5));
- 
- circleHidePanel.remove();
- image(circleHidePanel,wW-panelWidth-(circlePanelWidth*0.1)*2.7+moverX,0);
-
- circleOpenPanel.remove();
- image(circleOpenPanel,wW-(circlePanelWidth*0.1)*2.0,wH-(circlePanelWidth*0.1)*2.0);
    
  buttonsPanel.remove();
  image(buttonsPanel,0,0);
@@ -791,6 +785,11 @@ function draw() {
   image(playButton,playButtonXStart,wH-xLongTmp);   
  }
   
+ circleHidePanel.remove();
+ image(circleHidePanel,wW-panelWidth-(circlePanelWidth*0.1)*2.7+moverX,0);
+
+ circleOpenPanel.remove();
+ image(circleOpenPanel,wW-(circlePanelWidth*0.1)*2.0,wH-(circlePanelWidth*0.1)*2.0);
   
  
  if (pos1 != pos2) {
@@ -849,8 +848,8 @@ function draw() {
   textSize(30);
   stroke(255,0,0,255)
   text(test1,100,100)  
-  text(extraChartMoverX,100,130)  
-  text(firstRun+200,100,150)  
+  text(panelMoveX,100,130)  
+  text(firstRun+300,100,150)  
   
 
  if ((chartPlayController != -1 && 
@@ -3278,7 +3277,7 @@ class StartChart {
 //   var bCCChartTextWidth = chartTextWidth*(max(12,this.nextBar*0.3)/10)+10;
    var bCCChartTextWidth = chartTextWidth+10;
 //   var bCCChartValueWidth = chartValueWidth*(max(12,this.nextBar*0.3)/10)+10+circlePanelWidth*0.25;
-   var bCCChartValueWidth = chartValueWidth+circlePanelWidth*0.25+chartPanel.textWidth(scaleLegend);
+   var bCCChartValueWidth = chartValueWidth+circlePanelWidth*0.25*(panelMoveX == 0)+chartPanel.textWidth(scaleLegend);
    chartValueWidth3 = bCCChartValueWidth
    var bCCControllerLength = bCCChartTextWidth;
 //   if (animationStartParameters[2] == 1){
@@ -3513,7 +3512,7 @@ class StartChart {
     //   var bCCChartTextWidth = chartTextWidth*(max(12,this.nextBar*0.3)/10)+10;
    var lCCChartTextWidth = chartTextWidth+10;
 //   var bCCChartValueWidth = chartValueWidth*(max(12,this.nextBar*0.3)/10)+10+circlePanelWidth*0.25;
-   var lCCChartValueWidth = max(chartValueWidth+circlePanelWidth*0.25,round((100+100*(this.bars > 1)+chartPanel.textWidth(round(1000).toLocaleString("en-US")+scaleLegend)+10)*extraChartDivider));
+   var lCCChartValueWidth = max(chartValueWidth+circlePanelWidth*0.25*(panelMoveX == 0),round((100+100*(this.bars > 1)+chartPanel.textWidth(round(1000).toLocaleString("en-US")+scaleLegend)+10)*extraChartDivider));
    chartValueWidth3 = lCCChartValueWidth 
    var lCCControllerLength = lCCChartTextWidth;
 //   if (animationStartParameters[2] == 1){
