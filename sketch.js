@@ -848,7 +848,7 @@ function draw() {
   stroke(255,0,0,255)
   text(test1,100,100)  
   text(panelMoveX,100,130)  
-  text(firstRun+100,100,150)  
+  text(firstRun+200,100,150)  
   
 
  if ((chartPlayController != -1 && 
@@ -2869,7 +2869,6 @@ class TimerBelt {
         0,
         0,
         0);
-            test1 = timerBeltDataEndX
     
    timerBeltData.fill(255,255,255,255);
    timerBeltData.strokeWeight(3);
@@ -3390,10 +3389,12 @@ class StartChart {
       }
      }
        
+     // bCCFirstDigit = 1;
+     // bCCDivider = 1 
+            test1 = bCCFirstDigit
      var bCCValueLength = max(0,round(bCCMaxSizeValue/bCCFirstDigit).toString().length-1);
      var bCCMultiplier = bCCDivider*Math.pow(10,bCCValueLength);
         
-       
        
      chartPanel.textStyle(BOLD);
      chartPanel.textFont('Arial');
@@ -3409,9 +3410,13 @@ class StartChart {
           this.nextBar*this.stages+this.nextBar2*0.7);
      chartPanel.strokeWeight(0);
      chartPanel.fill(0, 0, 0, 255);
- 
-     for (var b = 1; b <= bCCFirstDigit; b++) {
-        
+      
+     var bCCFirstDigitStart = 1;
+     if  (wW < wH){
+      bCCFirstDigitStart = bCCFirstDigit; 
+     }
+     for (var b = bCCFirstDigitStart; b <= bCCFirstDigit; b++) {
+
       var bCCMultiplierValue = bCCMultiplier*b;
       chartPanel.text(bCCMultiplierValue.toLocaleString("en-US"),
            bCCWidth+bCCMaxSize*bCCMultiplierValue/bCCMaxSizeValue-chartPanel.textWidth(bCCMultiplierValue)/2,
@@ -3423,6 +3428,7 @@ class StartChart {
            bCCWidth+bCCMaxSize*bCCMultiplierValue/bCCMaxSizeValue,
            this.nextBar*this.stages+this.nextBar2*0.7);
       chartPanel.strokeWeight(0);
+    
      }
     } 
        
