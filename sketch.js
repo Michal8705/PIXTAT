@@ -818,6 +818,7 @@ function draw() {
   chartStage = min(chartStage+1,maxChartStage);
 //  chartStage = chartStage+1;
   chartWitchStage = chartWitchStage+1;
+            test1 = test1+1
  } 
   
  if (chartModelTypeForLegend != chartLastModelTypeForLegend){
@@ -849,7 +850,7 @@ function draw() {
   stroke(255,0,0,255)
   text(test1,100,100)  
   text(extraChartMoverX,100,130)  
-  text(firstRun+400,100,150)  
+  text(firstRun+500,100,150)  
   
 
  if ((chartPlayController != -1 && 
@@ -2978,7 +2979,6 @@ class StartChart {
   
    
   if (chartPanelIsLoaded == 0) {
-            test1 = test1+1
    chartPanel = createGraphics(wW, wH);
    chartPanel.background(230,230,230,255);
    chartPanel.noFill();  
