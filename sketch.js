@@ -595,7 +595,7 @@ function draw() {
  // wW = windowWidth
  // wH = windowHeight; 
   
- if (firstRun || isWindowsResized == 1){
+ if (firstRun){
   createCanvas(wW, wH);
   background(90,120,200,40);
  }
@@ -613,7 +613,7 @@ function draw() {
 
  if ((circleHideStart == 1 && ((moverX < panelWidth || firstRun))) ||
      choiceSter1 == 1 ||
-     hidePanelIsLoaded == 0 || isWindowsResized == 1) {   
+     hidePanelIsLoaded == 0) {   
    
    
   hidePanel = new HidePanel(panelWidth,0,0.1);
@@ -628,7 +628,7 @@ function draw() {
   
  if (circleOpenStart == 1 || 
      choiceSter1 == 1 ||
-     openPanelIsLoaded == 0 || firstRun || isWindowsResized == 1
+     openPanelIsLoaded == 0 || firstRun
     ) { 
    
   
@@ -642,7 +642,7 @@ function draw() {
   
  panelController();  
   
- if (panelIsLoaded == 0 || panelModulesController == 1 || choiceSter2 || isWindowsResized == 1) { 
+ if (panelIsLoaded == 0 || panelModulesController == 1 || choiceSter2) { 
    
   panel1 = new Panel(panelWidth,0,0.1);
   panel1.panelCreateGraphic(); 
@@ -651,7 +651,7 @@ function draw() {
  }
   
  if (leftButtonsPanelIsLoaded == 0 || leftButtonsPanelStart == 1 || 
-     choiceSter1 == 1 || choiceSter2 || isWindowsResized == 1) { 
+     choiceSter1 == 1 || choiceSter2) { 
    
    
   leftPanel1 = new LeftPanel(panelWidth,0,0.1,numberOfSlots);
@@ -670,7 +670,7 @@ function draw() {
  buttonChanged = 0;
  
  if (rightButtonsPanelIsLoaded == 0 || rightButtonsPanelStart == 1 ||
-      (mouseX > wW-panelWidth && (mouseY2 != mouseY || mouseX2 != mouseX)) || isWindowsResized == 1) { 
+      (mouseX > wW-panelWidth && (mouseY2 != mouseY || mouseX2 != mouseX))) { 
    
     
   buttons1 = new Buttons(panelWidth,0);
@@ -697,7 +697,7 @@ function draw() {
         mousePressY >= playButtonController[2] &&
         mousePressY <= playButtonController[3]) || 
      (lastNowChangeForMap > 0) ||
-     timerBeltIsLoaded == 0 || (lastExtraChartSter != 0 || extraChartSter != 0) || isWindowsResized == 1
+     timerBeltIsLoaded == 0 || (lastExtraChartSter != 0 || extraChartSter != 0)
     ) { 
 
   timerBelt1 = new TimerBelt(actualDivider, actualBars[max(1,actualButtonParameters[2])], 10, panelWidth, 0.1);
@@ -710,7 +710,7 @@ function draw() {
   
   
 
- if (chartPanelIsLoaded == 0 || chartPanelStart == 1 || chartPlayController == -1 || isWindowsResized == 1){
+ if (chartPanelIsLoaded == 0 || chartPanelStart == 1 || chartPlayController == -1){
   
    
   startChart1 = new StartChart(actualDivider, actualBars[max(1,actualButtonParameters[2])], max(10,actualBars[actualButtonParameters[2]]), panelWidth, 0.1);
@@ -762,7 +762,7 @@ function draw() {
      choiceSter1 == 1 ||
      playButtonIsLoaded == 0 ||
      chartModelTypeForLegend != chartLastModelTypeForLegend ||
-     (lastChartStage+1 == maxChartStage && chartStage == maxChartStage) || (lastExtraChartSter != 0 || extraChartSter != 0) || isWindowsResized == 1
+     (lastChartStage+1 == maxChartStage && chartStage == maxChartStage) || (lastExtraChartSter != 0 || extraChartSter != 0)
     ) { 
 
   playButton1 = new PlayButton(actualDivider, actualBars[max(1,actualButtonParameters[2])], 10, panelWidth, 0.1);
@@ -814,7 +814,7 @@ function draw() {
  }  
   
  lastChartStage = chartStage
- if (chartStage >= 0 && chartPlayController == (-1) && chartStop == 0 && chartModelTypeForLegend != 2 || isWindowsResized == 1){
+ if (chartStage >= 0 && chartPlayController == (-1) && chartStop == 0 && chartModelTypeForLegend != 2){
   chartStage = min(chartStage+1,maxChartStage);
 //  chartStage = chartStage+1;
   chartWitchStage = chartWitchStage+1;
@@ -850,7 +850,7 @@ function draw() {
   stroke(255,0,0,255)
   text(test1,100,100)  
   text(extraChartMoverX,100,130)  
-  text(firstRun+500,100,150)  
+  text(firstRun+200,100,150)  
   
 
  if ((chartPlayController != -1 && 
@@ -905,7 +905,7 @@ class Panel {
   
  panelCreateGraphic() {
    
-  if (panelIsLoaded && panelModulesController == 1 || (isWindowsResized == 1 && panelIsLoaded != 0)) {    
+  if (panelIsLoaded && panelModulesController == 1) {    
 
    buttonsPanel.clear(); 
 //   buttonsPanel.background(229,234,246,255);
@@ -1082,7 +1082,7 @@ class LeftPanel {
  leftPanelCreateGraphic() {
    
   if (leftButtonsPanelIsLoaded &&
-       (leftButtonsPanelStart == 1 || choiceSter1 == 1) || (isWindowsResized == 1 && leftButtonsPanelIsLoaded != 0)) {    
+       (leftButtonsPanelStart == 1 || choiceSter1 == 1)) {    
 
    leftButtonsPanel.clear(); 
 //   buttonsPanel.background(229,234,246,255);
@@ -1242,7 +1242,7 @@ class HidePanel {
    
  if ((circleHideStart == 1 || firstRun ||
      choiceSter1 == 1 ) && 
-      hidePanelIsLoaded == 1 || (isWindowsResized == 1 && hidePanelIsLoaded != 0)) {
+      hidePanelIsLoaded == 1) {
    circleHidePanel.clear(); 
   }
    
@@ -1345,7 +1345,7 @@ class OpenPanel {
  if ((circleOpenStart == 1 || 
      choiceSter1 == 1  || 
      ((lastPanelMoveX != panelMoveX) && panelMoveX == panelWidth)) && 
-      openPanelIsLoaded == 1 || (isWindowsResized == 1 && openPanelIsLoaded != 0)) {
+      openPanelIsLoaded == 1) {
    circleOpenPanel.clear(); 
 //   circleOpenPanel.background(255,255,255,255);
   }
@@ -1712,7 +1712,7 @@ class Buttons {
    
   if (rightButtonsPanelIsLoaded &&
        (rightButtonsPanelStart == 1 ||
-        mouseX > wW-this.x) || (isWindowsResized == 1 && rightButtonsPanelIsLoaded != 0)) {    
+        mouseX > wW-this.x)) {    
 
    rightButtonsPanel.clear(); 
 //   rightButtonsPanel.background(55,234,246,255);
@@ -2081,7 +2081,7 @@ class PlayButton {
   if ((playButtonStart != 0 ||
        choiceSter1 == 1 ||
      chartModelTypeForLegend != chartLastModelTypeForLegend) &&
-      playButtonIsLoaded == 1 || (lastExtraChartSter != 0 || extraChartSter != 0) || (isWindowsResized == 1 && playButtonIsLoaded != 0)){
+      playButtonIsLoaded == 1 || (lastExtraChartSter != 0 || extraChartSter != 0)){
     playButton.clear();
 //   playButton.background(0,0,0,255);
   }
@@ -2343,7 +2343,7 @@ class TimerBelt {
         mousePressY >= playButtonController[2] &&
         mousePressY <= playButtonController[3]) || 
      (lastNowChangeForMap > 0)) &&
-      timerBeltIsLoaded == 1 || (lastExtraChartSter != 0 || extraChartSter != 0) || (isWindowsResized == 1 && timerBeltIsLoaded != 0)){
+      timerBeltIsLoaded == 1 || (lastExtraChartSter != 0 || extraChartSter != 0)){
     timerBelt.clear();
     timerBeltData.clear();
 //   timerBeltData.background(0,0,0,255);
@@ -2925,7 +2925,7 @@ class StartChart {
 
  var doBackground = 0;
  if (chartPanelIsLoaded == 1){ 
-  if (chartModelTypeForLegend == 0 || (isWindowsResized == 1 && chartPanelIsLoaded != 0)){
+  if (chartModelTypeForLegend == 0){
    if (chartCalculate == 1 && ((chartPlayController == -1 && 
        chartStage % 15 == 0) ||
 //       chartLineRefresh == 1 ||
@@ -4585,7 +4585,7 @@ class ExtraChart {
 
  extraChartCreateGraphic(){
 
-  if (extraChartPanelIsLoaded == 1 || (isWindowsResized == 1 && extraChartPanelIsLoaded != 0)){ 
+  if (extraChartPanelIsLoaded == 1){ 
    extraChartPanel.clear();    
   }
       
