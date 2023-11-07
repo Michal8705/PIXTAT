@@ -40,7 +40,7 @@ function lastMouse() {
 }
 
 function windowResized() {
- isWindowsResized = 1;
+ isWindowsResized = 3;
  redraw(1)
 // loop();
  resizeCanvas(document.documentElement.clientWidth, document.documentElement.clientHeight)
@@ -843,14 +843,14 @@ function draw() {
  playButtonStart = max(0,playButtonStart-1); 
  lastNowChangeForMap = max(lastNowChangeForMap-1,0); 
  lastExtraChartSter = extraChartSter 
- isWindowsResized = 0; 
+ isWindowsResized = max(0,isWindowsResized-1); 
   
  
   textSize(30);
   stroke(255,0,0,255)
   text(test1,100,100)  
   text(extraChartMoverX,100,130)  
-  text(firstRun+400,100,150)  
+  text(firstRun+500,100,150)  
   
 
  if ((chartPlayController != -1 && 
@@ -859,6 +859,7 @@ function draw() {
      !mouseIsPressed && 
      lastChoiceSter > 13 &&
      extraChartSter == 0 && 
+     isWindowsResized == 0 && 
      lastExtraChartSter == 0 && 
      choiceTimer1 == 0 &&
      lastPosChange == 0 &&
