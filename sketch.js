@@ -822,7 +822,6 @@ function draw() {
  if (chartModelTypeForLegend != chartLastModelTypeForLegend){
      chartStage = Math.floor(chartStage/(actualDivider+1))*(actualDivider+1);
  }
-            test1 = moveCount
   
  choiceSter2 = choiceSter1 
  choiceController();
@@ -849,7 +848,7 @@ function draw() {
   stroke(255,0,0,255)
   text(test1,100,100)  
   text(panelMoveX,100,130)  
-  text(firstRun+400,100,150)  
+  text(firstRun+100,100,150)  
   
 
  if ((chartPlayController != -1 && 
@@ -2827,14 +2826,14 @@ class TimerBelt {
    timerBeltData.textStyle(BOLD);
    timerBeltData.textSize(this.nextBar*1.0);
    timerBeltData.textSize(max(12,round((this.nextBar2*1.0)*((wW/10)/timerBeltData.textWidth(bCTText)))-5));   
-   var bCTDateSize = timerBeltData.textWidth(bCTText)+10;
+   var bCTDateSize = timerBeltData.textWidth(bCTText)+5;
     
     
     
     
    timerBeltData.noFill();
    timerBeltDataEndY = max(timerBeltData.textSize(),this.nextBar2*1.0-max(12,this.nextBar2*0.3))
-   timerBeltDataEndX = bCTDateSize+20
+   timerBeltDataEndX = bCTDateSize+5
    
    for (var a = 10; a > 0; a--) {
      
@@ -2870,12 +2869,13 @@ class TimerBelt {
         0,
         0,
         0);
+            test1 = timerBeltDataEndX
     
    timerBeltData.fill(255,255,255,255);
    timerBeltData.strokeWeight(3);
    timerBeltData.stroke(0,0,0,255);
    timerBeltData.text(bCTText,
-        10,
+        5,
         (this.nextBar2*1.0-max(12,this.nextBar2*0.4))*0.5+timerBeltData.textSize()*0.5);
     
    // timerBeltData.textStyle(NORMAL);
