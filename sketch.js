@@ -600,8 +600,8 @@ function draw() {
  }
  if (wW > wH && isWindowsResized == 3){ 
   extraChartPanelIsLoaded = 0; 
-  extraChartController = 1;
-  extraChartDivider = 0; 
+  extraChartController = -1;
+  extraChartDivider = 1; 
  }
  
  if (firstRun){
@@ -861,7 +861,7 @@ function draw() {
   stroke(255,0,0,255)
   text(test1,100,100)  
   text(panelMoveX,100,130)  
-  text(firstRun+200,100,150)  
+  text(firstRun+300,100,150)  
   
 
  if ((chartPlayController != -1 && 
