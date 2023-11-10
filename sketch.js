@@ -510,6 +510,10 @@ function setup() {
  mouseY2 = mouseY;
  mouseX2 = mouseX; 
  
+ if (wW < wH){
+  extraChartController = 1;
+  extraChartDivider = 0; 
+ }
  if ( /Android|webOS|iPhone|iPad|Mac|Macintosh|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
   mobileDevice = 1; 
  } 
