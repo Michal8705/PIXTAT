@@ -795,8 +795,23 @@ function draw() {
 //  image(playButton,playButtonXStart,wH-xLongTmp);   
   image(playButton,playButtonXStart,wH-xLongTmp*1.35);
  }else{
-  image(playButton,playButtonXStart,wH-xLongTmp);   
+//  image(playButton,playButtonXStart,wH-xLongTmp);   
+  image(playButton,((chartTextWidth+10)*(chartModelTypeForLegend != 0)+chartValueWidth3*(chartModelTypeForLegend == 0))/2-xLongTmp/2,wH-xLongTmp);   
  }
+  
+  
+   var bCCChartTextWidth = chartTextWidth+10;
+//   var bCCChartValueWidth = chartValueWidth*(max(12,this.nextBar*0.3)/10)+10+circlePanelWidth*0.25;
+   var bCCChartValueWidth = chartValueWidth3;
+   var bCCControllerLength = bCCChartTextWidth;
+   if (chartModelTypeForLegend == 0){
+    bCCControllerLength = bCCChartValueWidth;
+   }
+  
+  
+  
+  
+  
   
  circleHidePanel.remove();
  image(circleHidePanel,wW-panelWidth-(circlePanelWidth*0.1)*2.7+moverX,0);
@@ -863,7 +878,7 @@ function draw() {
   stroke(255,0,0,255)
   text(test1,100,100)  
   text(extraChartController,100,130)  
-  text(firstRun+100,100,150)  
+  text(firstRun+200,100,150)  
   
 
  if ((chartPlayController != -1 && 
@@ -2258,7 +2273,7 @@ class PlayButton {
     bCCControllerLength = bCCChartValueWidth;
    }
    // }
-   bCCControllerLength = this.nextBar2 
+//   bCCControllerLength = this.nextBar2 
    playButtonXStart = 0;
    
    // var bCCMaxSize = min(wW*0.8,wW*0.6+panelMoveX[0]*0.6,wW-bCCChartTextWidth-bCCChartValueWidth);
@@ -2266,19 +2281,19 @@ class PlayButton {
    if (wW > wH) {
     bCCMaxSize = round(wW-bCCChartTextWidth-bCCChartValueWidth-panelWidth+panelMoveX*0.75);
    }
-   var bCCWidth = bCCControllerLength-(this.nextBar*0.8);
+   var bCCWidth = this.nextBar2-(this.nextBar*0.8);
    var minBars = max(10,this.bars);   
     
     
-   var bCCWidth2 = bCCControllerLength-(this.nextBar*0.8);
+   var bCCWidth2 = this.nextBar2-(this.nextBar*0.8);
 
 
    if (choiceSter1 == 1){
     if (lastChoiceSter > 2 && 
         choiceTimer1 > 1 && 
         choiceTimer1 < 10
-     && mousePressX >= playButtonXStart
-     && mousePressX <= bCCControllerLength
+     && mousePressX >= 0
+     && mousePressX <= bCCControllerLength-this.nextBar2/3
      && mousePressY >= wH-this.nextBar2*1.0
      && mousePressY <= wH){
 
@@ -2296,26 +2311,26 @@ class PlayButton {
    playButton.noStroke();
    playButton.fill(255,255,255,255);
 
-   playButton.triangle(bCCControllerLength*0.20, 
+   playButton.triangle(this.nextBar2*0.20, 
             this.nextBar2*0.15, 
-            bCCControllerLength*0.20, 
+            this.nextBar2*0.20, 
             this.nextBar2*0.85, 
-            bCCControllerLength*0.80, 
+            this.nextBar2*0.80, 
             this.nextBar2*0.50);
    }else{
      
     playButton.stroke(255,0,0,255);
     playButton.strokeWeight(this.nextBar2/6);
 
-    playButton.line(bCCControllerLength*0.32,
+    playButton.line(this.nextBar2*0.32,
          this.nextBar2*0.2,
-         bCCControllerLength*0.32,
+         this.nextBar2*0.32,
          this.nextBar2*0.8
         ); 
  
-    playButton.line(bCCControllerLength*0.68,
+    playButton.line(this.nextBar2*0.68,
          this.nextBar2*0.2,
-         bCCControllerLength*0.68,
+         this.nextBar2*0.68,
          this.nextBar2*0.8
         );     
    }
