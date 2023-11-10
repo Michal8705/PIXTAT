@@ -727,7 +727,7 @@ function draw() {
  }
   
   
- if (extraChartPanelIsLoaded == 0 || 1 == 1){ 
+ if ((extraChartPanelIsLoaded == 0 || 1 == 1) && wW > wH){
   ExtraChart1 = new ExtraChart(actualDivider, actualBars[max(1,actualButtonParameters[2])], max(10,actualBars[actualButtonParameters[2]]), panelWidth, 0.1);
   ExtraChart1.extraChartCreateGraphic();
   ExtraChart1.extraChartController();
@@ -737,8 +737,10 @@ function draw() {
  chartPanel.remove();
  image(chartPanel,0,0);
   
- extraChartPanel.remove(); 
- image(extraChartPanel,0,max(wH/2-20,extraChartYEnd+5));
+ if (wW > wH){ 
+  extraChartPanel.remove(); 
+  image(extraChartPanel,0,max(wH/2-20,extraChartYEnd+5));
+ }
    
  buttonsPanel.remove();
  image(buttonsPanel,0,0);
@@ -4275,7 +4277,7 @@ class StartChart {
   
  extraChartCreator() { 
    
-  if (chartModelTypeForLegend == 0 && extraChartMoverX != wW){
+  if (chartModelTypeForLegend == 0 && extraChartMoverX != wW &&  wW > wH) {
    
 
    
@@ -4624,7 +4626,7 @@ class ExtraChart {
     extraChartPanel.fill(255, 0, 0, 255);          
    }
      
-   if (extraChartController == 1){ 
+   if (extraChartController == 1){
     extraChartPanel.triangle(this.nextBar2/4,
                          this.nextBar2/5,
                          this.nextBar2/4,
