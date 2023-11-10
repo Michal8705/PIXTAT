@@ -7,7 +7,7 @@ var choiceSter2 = 0;
 var choiceTimer1 = 0;
 var choiceTimer2 = 0;
 var lastChoiceSter = 100;
-var mobileDevice = 1;
+var mobileDevice = 0;
 var buttonH = 50;
 var extraButtonH = 0;
 var lastExtraButtonH = 0;
@@ -878,7 +878,7 @@ function draw() {
   stroke(255,0,0,255)
   text(test1,100,100)  
   text(chartPanelStart,100,130)  
-  text(firstRun+200,100,150)  
+  text(firstRun+300,100,150)  
   
 
  if ((chartPlayController != -1 && 
