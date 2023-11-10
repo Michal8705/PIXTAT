@@ -878,7 +878,7 @@ function draw() {
   stroke(255,0,0,255)
   text(test1,100,100)  
   text(chartPanelStart,100,130)  
-  text(firstRun+300,100,150)  
+  text(firstRun+100,100,150)  
   
 
  if ((chartPlayController != -1 && 
@@ -2642,21 +2642,34 @@ class TimerBelt {
     maxScaleForBelt = round(bCCMaxSize/(timerBelt.textWidth(chartDate2[3])*2)); 
 //   }
    timerBelt.strokeWeight(2);
+    test1 = maxScaleForBelt 
     
    for (var u = 0; u < maxScaleForBelt+1; u++) {
      
     timerBelt.stroke(255, 255, 255, 255); 
      
     if (u % 1 == 0 || u == 0 || u == maxScaleForBelt){
-//     timerBelt.strokeWeight(2);
+
+     if (u != 0 && u != maxScaleForBelt){
+       
      timerBelt.line(bCCControllerLength+bCCMaxSize/maxScaleForBelt*u,
-//          this.nextBar*(minBars+1.1)+this.nextBar*0.4/1,
+          this.nextBar2*1.05,
+          bCCControllerLength+bCCMaxSize/maxScaleForBelt*u,
+          this.nextBar2*1.30);   
+     timerBelt.line(bCCControllerLength+bCCMaxSize/maxScaleForBelt*u,
+          this.nextBar2*1.75,
+          bCCControllerLength+bCCMaxSize/maxScaleForBelt*u,
+          this.nextBar2*2);   
+       
+     }else{
+     timerBelt.line(bCCControllerLength+bCCMaxSize/maxScaleForBelt*u,
           this.nextBar2*1.05,
           bCCControllerLength+bCCMaxSize/maxScaleForBelt*u,
           this.nextBar2*2);   
+     }
     }
-//   timerBelt.strokeWeight(2);
-   timerBelt.stroke(0,0,0,255);  
+
+    timerBelt.stroke(0,0,0,255);  
       
      
      
@@ -2672,8 +2685,9 @@ class TimerBelt {
 
       timerBelt.textAlign(LEFT);
       timerBelt.fill(255,255, 0, 255);  
-      xTmp = bCCControllerLength+(u-1)*bCCMaxSize/maxScaleForBelt+10
-      textTmp = chartDate2[round(chartDate2.length/u)] 
+//      xTmp = bCCControllerLength+(u-1)*bCCMaxSize/maxScaleForBelt+10
+      xTmp = bCCControllerLength+bCCMaxSize/maxScaleForBelt*u-timerBelt.textWidth(chartDate2[round(chartDate2.length-1)])/2
+      textTmp = chartDate2[round(chartDate2.length/(maxScaleForBelt)*u)] 
      }
      if (u == maxScaleForBelt){
       timerBelt.textAlign(RIGHT);
@@ -2961,7 +2975,6 @@ class StartChart {
 //       chartLineRefresh == 1 ||
        firstRun > 0) || (lastExtraChartSter != 0 || extraChartSter != 0)){
      
-    test1 = test1+1 
     doBackground = 1; 
     chartPanel.clear();
 
@@ -3550,7 +3563,7 @@ class StartChart {
     //   var bCCChartTextWidth = chartTextWidth*(max(12,this.nextBar*0.3)/10)+10;
    var lCCChartTextWidth = chartTextWidth+10;
 //   var bCCChartValueWidth = chartValueWidth*(max(12,this.nextBar*0.3)/10)+10+circlePanelWidth*0.25;
-   var lCCChartValueWidth = max(chartValueWidth+circlePanelWidth*0.25*(1-panelMoveX/panelWidth),round((100+100*(this.bars > 1)+chartPanel.textWidth(round(1000).toLocaleString("en-US")+scaleLegend)+10)*extraChartDivider));
+   var lCCChartValueWidth = max(chartValueWidth+circlePanelWidth*0.25*(1-panelMoveX/panelWidth)+10,round((100+100*(this.bars > 1)+chartPanel.textWidth(round(1000).toLocaleString("en-US")+scaleLegend)+10)*extraChartDivider));
    chartValueWidth3 = lCCChartValueWidth 
    var lCCControllerLength = lCCChartTextWidth;
 //   if (animationStartParameters[2] == 1){
