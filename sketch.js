@@ -510,10 +510,6 @@ function setup() {
  mouseY2 = mouseY;
  mouseX2 = mouseX; 
  
- if (wW < wH){
-  extraChartController = 1;
-  extraChartDivider = 0; 
- }
  if ( /Android|webOS|iPhone|iPad|Mac|Macintosh|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
   mobileDevice = 1; 
  } 
@@ -600,6 +596,10 @@ function draw() {
  wH = document.documentElement.clientHeight;  
  // wW = windowWidth
  // wH = windowHeight; 
+ if (wW < wH){
+  extraChartController = 1;
+  extraChartDivider = 0; 
+ }
   
  if (firstRun){
   createCanvas(wW, wH);
@@ -858,7 +858,7 @@ function draw() {
   stroke(255,0,0,255)
   text(test1,100,100)  
   text(panelMoveX,100,130)  
-  text(firstRun+300,100,150)  
+  text(firstRun+400,100,150)  
   
 
  if ((chartPlayController != -1 && 
