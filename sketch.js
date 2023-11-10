@@ -792,6 +792,7 @@ function draw() {
  playButton.remove();
  if (mobileDevice == 0 && chartModelTypeForLegend != 2){
 //  image(playButton,playButtonXStart,wH-xLongTmp*1.35);
+//  image(playButton,playButtonXStart,wH-xLongTmp);   
   image(playButton,playButtonXStart,wH-xLongTmp*1.35);
  }else{
   image(playButton,playButtonXStart,wH-xLongTmp);   
@@ -862,7 +863,7 @@ function draw() {
   stroke(255,0,0,255)
   text(test1,100,100)  
   text(extraChartController,100,130)  
-  text(firstRun+400,100,150)  
+  text(firstRun+100,100,150)  
   
 
  if ((chartPlayController != -1 && 
@@ -2102,7 +2103,8 @@ class PlayButton {
    if(mobileDevice == 0){
     playButton = createGraphics(this.nextBar2, this.nextBar2);
    }else{
-    playButton = createGraphics(chartValueWidth3*(max(12,this.nextBar*0.3)/10)+10, this.nextBar2); 
+//    playButton = createGraphics(chartValueWidth3*(max(12,this.nextBar*0.3)/10)+10, this.nextBar2); 
+    playButton = createGraphics(this.nextBar2, this.nextBar2); 
    }
      
 //   playButton.background(0,0,0,255);
@@ -2256,6 +2258,7 @@ class PlayButton {
     bCCControllerLength = bCCChartValueWidth;
    }
    // }
+   bCCControllerLength = this.nextBar2 
    playButtonXStart = 0;
    
    // var bCCMaxSize = min(wW*0.8,wW*0.6+panelMoveX[0]*0.6,wW-bCCChartTextWidth-bCCChartValueWidth);
@@ -2276,7 +2279,7 @@ class PlayButton {
         choiceTimer1 < 10
      && mousePressX >= playButtonXStart
      && mousePressX <= bCCControllerLength
-     && mousePressY >= wH-this.nextBar2*1.5
+     && mousePressY >= wH-this.nextBar2*1.0
      && mousePressY <= wH){
 
      chartPlayController = chartPlayController*(-1);
@@ -2293,26 +2296,26 @@ class PlayButton {
    playButton.noStroke();
    playButton.fill(255,255,255,255);
 
-   playButton.triangle(bCCControllerLength*0.30, 
+   playButton.triangle(bCCControllerLength*0.20, 
             this.nextBar2*0.15, 
-            bCCControllerLength*0.30, 
+            bCCControllerLength*0.20, 
             this.nextBar2*0.85, 
-            bCCControllerLength*0.70, 
+            bCCControllerLength*0.80, 
             this.nextBar2*0.50);
    }else{
      
     playButton.stroke(255,0,0,255);
-    playButton.strokeWeight(this.nextBar2/8);
+    playButton.strokeWeight(this.nextBar2/6);
 
-    playButton.line(bCCControllerLength*0.42,
+    playButton.line(bCCControllerLength*0.32,
          this.nextBar2*0.2,
-         bCCControllerLength*0.42,
+         bCCControllerLength*0.32,
          this.nextBar2*0.8
         ); 
  
-    playButton.line(bCCControllerLength*0.58,
+    playButton.line(bCCControllerLength*0.68,
          this.nextBar2*0.2,
-         bCCControllerLength*0.58,
+         bCCControllerLength*0.68,
          this.nextBar2*0.8
         );     
    }
