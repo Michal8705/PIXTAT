@@ -53,7 +53,10 @@ function windowResized() {
  chartPanelIsLoaded = 0; 
  if (wW > wH){ 
   extraChartPanelIsLoaded = 0; 
+  extraChartController = 1;
+  extraChartDivider = 0; 
  }
+ 
  playButtonIsLoaded = 0;
  timerBeltIsLoaded = 0; 
 }
@@ -858,7 +861,7 @@ function draw() {
   stroke(255,0,0,255)
   text(test1,100,100)  
   text(panelMoveX,100,130)  
-  text(firstRun+400,100,150)  
+  text(firstRun+100,100,150)  
   
 
  if ((chartPlayController != -1 && 
