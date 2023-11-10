@@ -51,7 +51,9 @@ function windowResized() {
  hidePanelIsLoaded = 0;
  openPanelIsLoaded = 0; 
  chartPanelIsLoaded = 0; 
- extraChartPanelIsLoaded = 0; 
+ if (wW > wH){ 
+  extraChartPanelIsLoaded = 0; 
+ }
  playButtonIsLoaded = 0;
  timerBeltIsLoaded = 0; 
 }
@@ -835,7 +837,9 @@ function draw() {
  hidePanelIsLoaded = 1;  
  openPanelIsLoaded = 1;
  chartPanelIsLoaded = 1;
- extraChartPanelIsLoaded = 1; 
+ if (wW > wH){ 
+  extraChartPanelIsLoaded = 1; 
+ }
  playButtonIsLoaded = 1;
  timerBeltIsLoaded = 1; 
  firstRun = max(0,firstRun-1)
@@ -850,7 +854,7 @@ function draw() {
   stroke(255,0,0,255)
   text(test1,100,100)  
   text(panelMoveX,100,130)  
-  text(firstRun+200,100,150)  
+  text(firstRun+300,100,150)  
   
 
  if ((chartPlayController != -1 && 
