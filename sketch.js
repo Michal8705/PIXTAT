@@ -7,7 +7,7 @@ var choiceSter2 = 0;
 var choiceTimer1 = 0;
 var choiceTimer2 = 0;
 var lastChoiceSter = 100;
-var mobileDevice = 0;
+var mobileDevice = 1;
 var buttonH = 50;
 var extraButtonH = 0;
 var lastExtraButtonH = 0;
@@ -877,7 +877,7 @@ function draw() {
   textSize(30);
   stroke(255,0,0,255)
   text(test1,100,100)  
-  text(extraChartController,100,130)  
+  text(chartPanelStart,100,130)  
   text(firstRun+200,100,150)  
   
 
@@ -2961,6 +2961,7 @@ class StartChart {
 //       chartLineRefresh == 1 ||
        firstRun > 0) || (lastExtraChartSter != 0 || extraChartSter != 0)){
      
+    test1 = test1+1 
     doBackground = 1; 
     chartPanel.clear();
 
@@ -3423,7 +3424,6 @@ class StartChart {
        
      // bCCFirstDigit = 1;
      // bCCDivider = 1 
-            test1 = bCCFirstDigit
      var bCCValueLength = max(0,round(bCCMaxSizeValue/bCCFirstDigit).toString().length-1);
      var bCCMultiplier = bCCDivider*Math.pow(10,bCCValueLength);
         
@@ -4310,7 +4310,7 @@ class StartChart {
   if (chartModelTypeForLegend == 0 && extraChartMoverX != wW &&  wW > wH) {
    
 
-   
+  
    chartMoverY = 0;
 //   var bCCChartTextWidth = chartTextWidth*(max(12,this.nextBar*0.3)/10)+10;
    var bCCChartTextWidth = chartTextWidth2+10;
@@ -4396,7 +4396,8 @@ class StartChart {
    }
         
    extraChartYSizeEnd = 0;
-   if (chartStage % 15 == 0 || firstRun > 0 || extraChartMoverX != 0) {
+   if ((chartPlayController == -1 && 
+       chartStage % 15 == 0) || firstRun > 0 || extraChartMoverX != 0) {
     
    for (var a = 0; a < min(3,this.bars); a++) {
       
