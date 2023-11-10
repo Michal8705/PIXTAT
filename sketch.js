@@ -2640,7 +2640,7 @@ class TimerBelt {
 
 //   if ((lastPanelMoveX == panelWidth || lastPanelMoveX == 0) && (panelMoveX == panelWidth || panelMoveX == 0)){ 
    maxScaleForBelt = round(bCCMaxSize/(timerBelt.textWidth(chartDate2[3])*2)); 
-   if (maxScaleForBelt == 1){
+   if (maxScaleForBelt <= 1){
     timerBelt.textSize(max(10,this.nextBar2*0.2))  
    }
    timerBelt.strokeWeight(2);
