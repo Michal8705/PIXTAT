@@ -41,6 +41,8 @@ function lastMouse() {
 
 function windowResized() {
  isWindowsResized = 3;
+ // chartStage = round(chartStage/15)*15;
+ // chartStage = 1;
  redraw(1)
 // loop();
  resizeCanvas(document.documentElement.clientWidth, document.documentElement.clientHeight)
@@ -877,8 +879,8 @@ function draw() {
   textSize(30);
   stroke(255,0,0,255)
   text(test1,100,100)  
-  text(chartPanelStart,100,130)  
-  text(firstRun+300,100,150)  
+  text(round(chartStage/15),100,130)  
+  text(firstRun+100,100,150)  
   
 
  if ((chartPlayController != -1 && 
@@ -2640,11 +2642,10 @@ class TimerBelt {
 
 //   if ((lastPanelMoveX == panelWidth || lastPanelMoveX == 0) && (panelMoveX == panelWidth || panelMoveX == 0)){ 
    maxScaleForBelt = round(bCCMaxSize/(timerBelt.textWidth(chartDate2[3])*2)); 
-   if (maxScaleForBelt <= 1){
+   if (maxScaleForBelt == 1){
     timerBelt.textSize(max(10,this.nextBar2*0.2))  
    }
    timerBelt.strokeWeight(2);
-    test1 = maxScaleForBelt 
     
    for (var u = 0; u < maxScaleForBelt+1; u++) {
      
@@ -2966,6 +2967,7 @@ class StartChart {
   this.x = x;
  }
   
+
   
  chartCreateGraphic(){
 
@@ -2975,7 +2977,8 @@ class StartChart {
    if (chartCalculate == 1 && ((chartPlayController == -1 && 
        chartStage % 15 == 0) ||
 //       chartLineRefresh == 1 ||
-       firstRun > 0) || (lastExtraChartSter != 0 || extraChartSter != 0)){
+//       firstRun > 0) || (lastExtraChartSter != 0 || extraChartSter != 0)){
+       firstRun > 0) || (extraChartMoverX != 0 && extraChartMoverX != wW)){
      
     doBackground = 1; 
     chartPanel.clear();
@@ -3030,6 +3033,7 @@ class StartChart {
    chartPanel.background(230,230,230,255);
    chartPanel.noFill();  
    buttonChanged = 1
+    test1 = test1+1
   }
  }
   
