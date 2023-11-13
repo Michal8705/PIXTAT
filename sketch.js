@@ -880,7 +880,7 @@ function draw() {
   stroke(255,0,0,255)
   text(test1,100,100)  
   text(chartStage,100,130)  
-  text(firstRun+400,100,150)  
+  text(firstRun+500,100,150)  
   
 
  if ((chartPlayController != -1 && 
@@ -2975,7 +2975,7 @@ class StartChart {
  if (chartPanelIsLoaded == 1){ 
   if (chartModelTypeForLegend == 0){
    if (chartCalculate == 1 && ((chartPlayController == -1 && 
-       chartStage % 30 == 0) ||
+       chartStage % 100 == 0) ||
 //       chartLineRefresh == 1 ||
 //       firstRun > 0) || (lastExtraChartSter != 0 || extraChartSter != 0)){
        firstRun > 0) || (extraChartMoverX != 0 && extraChartMoverX != wW)){
@@ -3587,7 +3587,7 @@ class StartChart {
    choiceSter1 == 1
 
    if (((firstRun > 0) && 
-        chartStage % 30 == 0)|| lastNowChangeForMap > 0 || firstRun > 0 || (extraChartMoverX != 0 && extraChartMoverX != wW)) {
+        chartStage % 100 == 0)|| lastNowChangeForMap > 0 || firstRun > 0 || (extraChartMoverX != 0 && extraChartMoverX != wW)) {
     
     chartLineXMax = 0; 
     chartLinePositions = [];
@@ -3718,7 +3718,7 @@ class StartChart {
 
     
    if (chartCalculate == 1 && ((chartPlayController == -1 && 
-       chartStage % 30 == 0) ||
+       chartStage % 100 == 0) ||
        firstRun > 0) || (extraChartMoverX != 0 && extraChartMoverX != wW)){ 
 
     var chartStageTmp = chartStage/(this.divider+1);
@@ -4416,7 +4416,7 @@ class StartChart {
         
    extraChartYSizeEnd = 0;
    if ((chartPlayController == -1 && 
-       chartStage % 30 == 0) || firstRun > 0 || extraChartMoverX != 0) {
+       chartStage % 100 == 0) || firstRun > 0 || extraChartMoverX != 0) {
     
    for (var a = 0; a < min(3,this.bars); a++) {
       
